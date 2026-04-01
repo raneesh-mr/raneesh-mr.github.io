@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://raneeshmr.github.io/sitemap.xml
