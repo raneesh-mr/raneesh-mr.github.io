@@ -377,6 +377,7 @@
       display: block;
       color: var(--gold);
       font-style: italic;
+      font-size: clamp(28px, 3.5vw, 44px);
     }
 
     .hero-title {
@@ -1189,11 +1190,11 @@
           </div>
           <h1 class="hero-name" data-reveal>
             Raneesh
-            <span class="hero-name-accent">MR.</span>
+            <span class="hero-name-accent">Raveendran.</span>
           </h1>
           <p class="hero-title" data-reveal>Senior Facilities &amp; Community Manager · Digital Solutions</p>
           <p class="hero-desc" data-reveal>
-            Innovating digital solutions to help people for a smarter future. Two decades of delivering operational excellence across master communities, airports, data centres, and commercial FM — in the UAE, GCC &amp; India. Turning data into information, information into knowledge, and knowledge into wisdom.
+            Innovating digital solutions to help people for a smarter future. Two decades of delivering operational excellence across master communities, airports, data centres, and commercial FM — in the GCC &amp; India. Turning data into information, information into knowledge, and knowledge into wisdom.
           </p>
           <div class="hero-actions" data-reveal>
             <a href="#contact" class="btn-primary">
@@ -1210,7 +1211,7 @@
             <img src="headshot.webp" alt="Raneesh | Facilities & Digital Transformation Specialist" loading="eager" />
           </div>
           <div class="hero-cert-badge">
-            <strong>20+</strong>
+            <strong>20+ Yrs.</strong>
             UAE &amp; INDIA
           </div>
         </div>
@@ -1250,10 +1251,10 @@
           <span class="proof-company">Dubai Airports</span>
           <span class="proof-company">Fairmont Residence</span>
           <span class="proof-company">DAMAC Park Towers</span>
-          <span class="proof-company">Canara Bank DC</span>
+          <span class="proof-company">Canara Bank Data Center</span>
           <span class="proof-company">Sigma Soft Tech Park</span>
           <span class="proof-company">IBM Daksh</span>
-          <span class="proof-company">DRDO</span>
+          <span class="proof-company">Defence Research and Development Organisation</span>
         </div>
       </div>
       <div class="cert-strip" aria-label="Certifications">
@@ -1275,7 +1276,7 @@
         <span class="section-label">What I Offer</span>
         <span class="gold-line"></span>
         <h2 class="section-h2">FM &amp; Digital Solutions<br>Across GCC &amp; India</h2>
-        <p class="section-sub">From technical audits to full CAFM implementations — comprehensive solutions built on 20 years of hands-on experience across the UAE, GCC &amp; India.</p>
+        <p class="section-sub">From technical audits to full CAFM implementations — comprehensive solutions built on 20 years of hands-on experience across the GCC &amp; India.</p>
       </div>
       <div class="services-grid">
         <div class="service-card reveal reveal-delay-1">
@@ -1311,7 +1312,7 @@
         <div class="service-card reveal reveal-delay-3">
           <div class="service-icon" aria-hidden="true">🛡️</div>
           <h3 class="service-title">Regulatory Compliance Audit</h3>
-          <p class="service-desc">Thorough compliance assessments ensuring adherence to UAE/GCC regulations, RERA, Civil Defense requirements, and international standards including ISO 9001.</p>
+          <p class="service-desc">Thorough compliance assessments ensuring adherence to UAE regulations, RERA, Civil Defense requirements, and international standards including ISO 9001.</p>
           <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
         </div>
         <div class="service-card reveal reveal-delay-1">
@@ -1349,7 +1350,7 @@
             <h2 class="section-h2">Two Decades of<br>Excellence</h2>
           </div>
           <p class="about-lead reveal">Bridging technical FM expertise with digital innovation — turning data into information, information into knowledge, and knowledge into wisdom.</p>
-          <p class="about-body reveal">With 20+ years of facilities management and community management experience spanning residential master communities, international airports, data centres, defence installations, and corporate real estate across the UAE, GCC &amp; India, I bring a rare combination of technical depth and strategic vision to every engagement.</p>
+          <p class="about-body reveal">With 20+ years of facilities management and community management experience spanning residential master communities, international airports, data centres, defence installations, and corporate real estate across the UAE &amp; India, I bring a rare combination of technical depth and strategic vision to every engagement.</p>
           <div class="about-highlights reveal">
             <div class="about-highlight"><span class="about-highlight-dot"></span>IOSH, ISO 9001 Quality Management Systems (QMS) Internal Auditor, M-100 (Essentials of Community Association Management) &amp; IMS certified</div>
             <div class="about-highlight"><span class="about-highlight-dot"></span>Skilled in PowerApps, Power Automate &amp; Power BI — building digital workflows that turn FM data into decisions</div>
@@ -1376,7 +1377,7 @@
               <div class="timeline-body">
                 <div class="timeline-period">2024 — Present</div>
                 <div class="timeline-company">Wasl Communities Management</div>
-                <div class="timeline-role">Al Kifah Community Management · Palm Jumeirah · JGE</div>
+                <div class="timeline-role">Al Kifaf Community Management · Palm Jumeirah · JGE</div>
                 <span class="timeline-tag">Community FM</span>
               </div>
             </div>
@@ -1543,11 +1544,11 @@
                 <label class="form-label" for="form-service">Interest / Role</label>
                 <select class="form-select" id="form-service" name="service">
                   <option value="">Select interest…</option>
-                  <option value="FM Director Role">FM Director Role</option>
-                  <option value="Community Manager Role">Community Manager Role</option>
+                  <option value="FM Advisory / Consulting">FM Advisory / Consulting</option>
+                  <option value="Community Management">Community Management</option>
                   <option value="CAFM Implementation">CAFM Implementation</option>
                   <option value="Technical Audit / Inspection">Technical Audit / Inspection</option>
-                  <option value="FM Advisory / Consulting">FM Advisory / Consulting</option>
+                  <option value="Task Automation">Task Automation</option>
                   <option value="Regulatory Compliance Audit">Regulatory Compliance Audit</option>
                   <option value="ERP Implementation">ERP Implementation</option>
                   <option value="AI & Digital Integration (PowerApps / Power Automate)">AI &amp; Digital Integration (PowerApps / Power Automate)</option>
@@ -1763,17 +1764,20 @@
     }
 
     // ── Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const target = document.querySelector(a.getAttribute('href'));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
           const offset = 80;
-          const y = target.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
         }
       });
     });
+
   </script>
 </body>
 </html>
