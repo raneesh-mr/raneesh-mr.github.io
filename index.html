@@ -11,8 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ═══ SEO META ═══ -->
-  <title>Raneesh | Facilities & Digital Transformation Specialist | Dubai UAE</title>
-  <meta name="description" content="20+ years Facilities Management experience across GCC & India. ISO 9001 QMS, IOSH certified. Specialist in community management, CAFM, PowerApps, Power Automate & digital FM transformation. Dubai-based." />
+  <title>Raneesh MR | FM & Digital Transformation | Dubai UAE</title>
+  <meta name="description" content="Senior FM &amp; Community Manager, 20+ yrs GCC &amp; India. CAFM, ISO 9001, IOSH certified. Cutting downtime &amp; costs through digital FM transformation. Dubai-based." />
   <meta name="keywords" content="facilities manager dubai, FM consultant UAE, community manager dubai, CAFM implementation, IFM specialist, ISO 9001 facilities management, IOSH certified, PowerApps FM, Power Automate facilities, digital transformation FM" />
   <meta name="author" content="Raneesh MR" />
   <meta name="robots" content="index, follow" />
@@ -48,7 +48,7 @@
     "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
     "worksFor": { "@type": "Organization", "name": "Wasl Communities Management" },
     "knowsAbout": ["Facilities Management","Community Management","CAFM Systems","ISO 9001 Quality Management Systems","HSE Management","Contract Management","Integrated Facilities Management","Budgeting & Cost Control","Digital Transformation","PPM Scheduling","PowerApps","Power Automate","Power BI","Microsoft 365"],
-    "sameAs": ["https://www.linkedin.com/in/raneesh-mr/","https://x.com/raneeshmr","https://wa.me/971556469921"]
+    "sameAs": ["https://www.linkedin.com/in/raneesh-mr/","https://github.com/raneesh-mr","https://x.com/raneeshmr","https://wa.me/971556469921"]
   }
   </script>
 
@@ -1145,6 +1145,400 @@
       .hero-stat { padding: 20px 16px; }
       .hero-stat-num { font-size: 28px; }
     }
+
+    /* ═══════════════════════════════════════════
+       CASE STUDIES
+    ═══════════════════════════════════════════ */
+    #case-studies { background: var(--navy); }
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .cs-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,151,60,.15);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .cs-card:hover {
+      border-color: rgba(200,151,60,.5);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .cs-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-thumb-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-category {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(200,151,60,.9);
+      color: var(--navy);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+    }
+    .cs-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .cs-excerpt {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .cs-outcome {
+      background: rgba(200,151,60,.1);
+      border-left: 3px solid var(--gold);
+      padding: 10px 14px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 13px;
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .cs-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,.06);
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+    }
+    .cs-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      margin-top: auto;
+      transition: var(--transition);
+    }
+    .cs-read-btn:hover { color: var(--gold-light); }
+    .cs-read-btn svg { transition: transform var(--transition); }
+    .cs-card:hover .cs-read-btn svg { transform: translateX(4px); }
+
+    /* Case Study Modal */
+    .cs-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5,14,24,.92);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .cs-modal-overlay.open { display: flex; }
+    .cs-modal {
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,151,60,.25);
+      border-radius: var(--radius-lg);
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 48px;
+      position: relative;
+    }
+    .cs-modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.06);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+    .cs-modal-close:hover { background: rgba(200,151,60,.2); color: var(--gold); }
+    .cs-modal-cat {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      margin-bottom: 14px;
+    }
+    .cs-modal-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .cs-modal-outcome {
+      background: rgba(200,151,60,.1);
+      border-left: 4px solid var(--gold);
+      padding: 14px 18px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 15px;
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .cs-modal-body {
+      font-size: 15px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.8;
+    }
+    .cs-modal-body h4 {
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 24px 0 10px;
+      font-family: var(--font-mono);
+    }
+    .cs-modal-body p { margin-bottom: 14px; }
+    .cs-modal-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .cs-cta-row {
+      text-align: center;
+      margin-top: 48px;
+    }
+    /* How to add a new case study banner */
+    .cs-add-hint {
+      margin-top: 32px;
+      background: rgba(200,151,60,.07);
+      border: 1px dashed rgba(200,151,60,.3);
+      border-radius: var(--radius-md);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,.4);
+    }
+    .cs-add-hint code {
+      font-family: var(--font-mono);
+      color: var(--gold);
+      font-size: 12px;
+    }
+    @media (max-width: 1024px) { .cs-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .cs-grid { grid-template-columns: 1fr; }
+      .cs-modal { padding: 28px 20px; }
+    }
+
+
+
+    /* TESTIMONIALS */
+    #testimonials { background: var(--cream); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(200,151,60,.3);
+      transform: translateY(-3px);
+    }
+    .testimonial-stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
+    .testimonial-quote { font-size: 15px; color: var(--text-mid); line-height: 1.75; flex: 1; font-style: italic; margin-bottom: 24px; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border-light); padding-top: 18px; }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .testimonial-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════
+       CONTACT FORM (Web3Forms)
+    ═══════════════════════════════════════════ */
+    .w3f-wrapper {
+      background: var(--navy-mid);
+      border: 1px solid rgba(200,151,60,.2);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+    }
+    .w3f-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .w3f-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 28px;
+    }
+    .w3f-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .w3f-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+    .w3f-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 7px;
+      font-family: var(--font-mono);
+    }
+    .w3f-label span { color: var(--gold); }
+    .w3f-input,
+    .w3f-select,
+    .w3f-textarea {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 12px 14px;
+      width: 100%;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .w3f-input::placeholder,
+    .w3f-textarea::placeholder { color: rgba(255,255,255,.22); }
+    .w3f-input:focus,
+    .w3f-select:focus,
+    .w3f-textarea:focus {
+      border-color: rgba(200,151,60,.65);
+      box-shadow: 0 0 0 3px rgba(200,151,60,.1);
+      background: rgba(255,255,255,.09);
+    }
+    .w3f-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8973C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .w3f-select option { background: #0E2640; color: var(--white); }
+    .w3f-textarea { min-height: 120px; resize: vertical; line-height: 1.65; }
+    .w3f-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .w3f-submit:hover:not(:disabled) { background: var(--gold-light); transform: translateY(-2px); }
+    .w3f-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .w3f-alert {
+      display: none;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      margin-top: 16px;
+      line-height: 1.55;
+    }
+    .w3f-alert.success {
+      background: rgba(200,151,60,.1);
+      border: 1px solid rgba(200,151,60,.35);
+      border-left: 4px solid var(--gold);
+      color: var(--gold-light);
+    }
+    .w3f-alert.error {
+      background: rgba(255,80,80,.08);
+      border: 1px solid rgba(255,80,80,.3);
+      border-left: 4px solid #ff6060;
+      color: #ff9090;
+    }
+    .w3f-field-error {
+      font-size: 11px;
+      color: #ff8080;
+      margin-top: 5px;
+      display: none;
+    }
+    .w3f-input.invalid,
+    .w3f-textarea.invalid,
+    .w3f-select.invalid {
+      border-color: rgba(255,80,80,.55) !important;
+    }
+    @media (max-width: 560px) { .w3f-row { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .w3f-wrapper { padding: 24px 18px; } }
   </style>
 </head>
 <body>
@@ -1160,6 +1554,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
           <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
         </ul>
         <button class="nav-hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
@@ -1171,6 +1567,8 @@
       <a href="#about" role="menuitem">About</a>
       <a href="#services" role="menuitem">Services</a>
       <a href="#skills" role="menuitem">Skills &amp; Expertise</a>
+      <a href="#testimonials" role="menuitem">Testimonials</a>
+      <a href="#case-studies" role="menuitem">Case Studies</a>
       <a href="#contact" role="menuitem">Contact</a>
       <a href="#contact" class="nav-cta-mobile">Get In Touch ↗</a>
     </div>
@@ -1463,6 +1861,74 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section" aria-label="Testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">What Others Say</span>
+        <span class="gold-line"></span>
+        <h2 class="section-h2">Trusted by Leaders<br>Across the GCC</h2>
+        <p class="section-sub">Feedback from managers, clients, and colleagues I&apos;ve worked with across Dubai, the GCC, and India.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">Raneesh transformed our community operations from reactive chaos to a structured, data-driven system. His CAFM rollout cut our maintenance backlog by nearly half within three months. Rarely do you find someone who combines technical depth with genuine operational instinct.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div><div class="testimonial-name">Ahmed K.</div><div class="testimonial-role">General Manager, Master Community &middot; Dubai</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">The PowerApps inspection platform Raneesh built replaced our entire paper-based system in under 12 weeks. Our supervisors now have real-time dashboards, and we&apos;ve eliminated the daily data-entry bottleneck completely. A high-impact delivery, professionally executed.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SR</div>
+            <div><div class="testimonial-name">Sanjay R.</div><div class="testimonial-role">Operations Director, FM Services &middot; UAE</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-quote">Raneesh&apos;s expertise in OA governance was exactly what our newly handed-over community needed. He established the RERA-compliant framework from zero, resolved our complaint backlog, and had residents trusting the process within 90 days. Exceptional professional.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FH</div>
+            <div><div class="testimonial-name">Fatima H.</div><div class="testimonial-role">Community Manager, Residential Development &middot; Dubai</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDIES
+  ═══════════════════════════════════════════ -->
+  <section id="case-studies" class="section" aria-label="Case Studies">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Proven Results</span>
+        <span class="gold-line"></span>
+        <h2 class="section-h2" style="color:var(--white)">Case Studies</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.55)">Real challenges. Measurable outcomes. Documented impact across facilities operations, digital transformation, and community management.</p>
+      </div>
+
+      <div class="cs-grid" id="cs-grid">
+        <!-- Cards injected by JS -->
+      </div>
+
+      <div class="cs-cta-row reveal">
+        <a href="#contact" class="btn-primary">Discuss Your Challenge &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Modal -->
+  <div class="cs-modal-overlay" id="cs-modal" role="dialog" aria-modal="true" aria-label="Case Study Detail">
+    <div class="cs-modal">
+      <button class="cs-modal-close" id="cs-modal-close" aria-label="Close">&times;</button>
+      <div id="cs-modal-content"></div>
+    </div>
+  </div>
+
   <!-- ═══════════════════════════════════════════
        CONTACT
   ═══════════════════════════════════════════ -->
@@ -1514,69 +1980,83 @@
             <a href="https://wa.me/971556469921" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             </a>
-            <a href="https://x.com/raneeshmr" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <a href="https://www.linkedin.com/in/raneesh-mr/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
             </a>
           </div>
         </div>
 
-        <!-- Form -->
-        <div class="reveal">
-          <form class="contact-form" id="contact-form" novalidate>
+        <!-- HubSpot Form -->
+        <div class="reveal reveal-delay-2">
+          <div class="w3f-wrapper">
+            <p class="w3f-title">Send an Enquiry</p>
+            <p class="w3f-sub">I&apos;ll respond within 24 hours. Fields marked <span style="color:#C8973C">*</span> are required.</p>
+            <form id="w3f" novalidate>
+              <input type="hidden" name="access_key" value="9be8fa4f-a393-464b-8774-abee3f82ee72" />
+              <input type="hidden" name="subject" value="New Enquiry — raneesh-mr.github.io" />
+              <input type="hidden" name="from_name" value="Raneesh Website" />
+              <input type="checkbox" name="botcheck" style="display:none" />
 
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="form-name">Full Name *</label>
-                <input class="form-input" type="text" id="form-name" name="name" placeholder="Ahmed Al-Rashid" required autocomplete="name" />
+              <div class="w3f-row">
+                <div class="w3f-group">
+                  <label class="w3f-label" for="w3f-name">Full Name <span>*</span></label>
+                  <input class="w3f-input" type="text" id="w3f-name" name="name" placeholder="Ahmed Al-Rashid" autocomplete="name" />
+                  <span class="w3f-field-error" id="err-name">Please enter your name.</span>
+                </div>
+                <div class="w3f-group">
+                  <label class="w3f-label" for="w3f-email">Email <span>*</span></label>
+                  <input class="w3f-input" type="email" id="w3f-email" name="email" placeholder="you@company.com" autocomplete="email" />
+                  <span class="w3f-field-error" id="err-email">Please enter a valid email.</span>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="form-phone">Phone / WhatsApp</label>
-                <input class="form-input" type="tel" id="form-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" />
-              </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="form-company">Company</label>
-                <input class="form-input" type="text" id="form-company" name="company" placeholder="Company / Organisation" autocomplete="organization" />
+              <div class="w3f-row">
+                <div class="w3f-group">
+                  <label class="w3f-label" for="w3f-phone">Phone / WhatsApp</label>
+                  <input class="w3f-input" type="tel" id="w3f-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" />
+                </div>
+                <div class="w3f-group">
+                  <label class="w3f-label" for="w3f-company">Company</label>
+                  <input class="w3f-input" type="text" id="w3f-company" name="company" placeholder="Company / Organisation" autocomplete="organization" />
+                </div>
               </div>
-              <div class="form-group">
-                <label class="form-label" for="form-service">Interest / Role</label>
-                <select class="form-select" id="form-service" name="service">
-                  <option value="">Select interest…</option>
-                  <option value="FM Advisory / Consulting">FM Advisory / Consulting</option>
-                  <option value="Community Management">Community Management</option>
-                  <option value="CAFM Implementation">CAFM Implementation</option>
-                  <option value="Technical Audit / Inspection">Technical Audit / Inspection</option>
-                  <option value="Task Automation">Task Automation</option>
-                  <option value="Regulatory Compliance Audit">Regulatory Compliance Audit</option>
-                  <option value="ERP Implementation">ERP Implementation</option>
-                  <option value="AI & Digital Integration (PowerApps / Power Automate)">AI &amp; Digital Integration (PowerApps / Power Automate)</option>
-                  <option value="Contract & SLA Structuring">Contract &amp; SLA Structuring</option>
-                  <option value="General Enquiry">General Enquiry</option>
+
+              <div class="w3f-group">
+                <label class="w3f-label" for="w3f-interest">Interest / Role</label>
+                <select class="w3f-select" id="w3f-interest" name="interest">
+                  <option value="">Select your interest&hellip;</option>
+                  <option>FM Advisory / Consulting</option>
+                  <option>Community Management</option>
+                  <option>CAFM Implementation</option>
+                  <option>Technical Audit / Inspection</option>
+                  <option>Task Automation</option>
+                  <option>Regulatory Compliance Audit</option>
+                  <option>ERP Implementation</option>
+                  <option>AI &amp; Digital Integration (PowerApps / Power Automate)</option>
+                  <option>Contract &amp; SLA Structuring</option>
+                  <option>General Enquiry</option>
                 </select>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label class="form-label" for="form-message">Message *</label>
-              <textarea class="form-textarea" id="form-message" name="message" placeholder="Tell me about your project, portfolio, or the role you're hiring for…" required></textarea>
-            </div>
+              <div class="w3f-group">
+                <label class="w3f-label" for="w3f-message">Message <span>*</span></label>
+                <textarea class="w3f-textarea" id="w3f-message" name="message" placeholder="Tell me about your project, challenge, or the role you&apos;re hiring for&hellip;"></textarea>
+                <span class="w3f-field-error" id="err-message">Please enter a message.</span>
+              </div>
 
-            <p style="font-size:12px; color:rgba(255,255,255,.4); margin-bottom:4px;">Choose how you'd like to send this message:</p>
-            <div class="form-buttons">
-              <button type="button" class="form-btn-whatsapp" id="btn-whatsapp" onclick="sendViaWhatsApp()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                Send via WhatsApp
+              <button type="submit" class="w3f-submit" id="w3f-submit">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Enquiry
               </button>
-              <button type="button" class="form-btn-email" id="btn-email" onclick="sendViaEmail()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                Send via Email
-              </button>
-            </div>
 
-            <p class="form-note">WhatsApp opens the app (mobile &amp; desktop). Email opens your mail client pre-filled.</p>
-          </form>
+              <div class="w3f-alert success" id="w3f-success">
+                Message received &mdash; I&apos;ll be in touch within 24 hours. If urgent, WhatsApp <strong>+971 55 646 9921</strong>.
+              </div>
+              <div class="w3f-alert error" id="w3f-error">
+                Something went wrong. Email me directly at <a href="mailto:raneesh.mr08@gmail.com" style="color:#C8973C">raneesh.mr08@gmail.com</a>.
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -1596,6 +2076,7 @@
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="#about">About</a>
           <a href="#services">Services</a>
+          <a href="#case-studies">Case Studies</a>
           <a href="#contact">Contact</a>
           <a href="https://www.linkedin.com/in/raneesh-mr/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
         </nav>
@@ -1778,6 +2259,232 @@
       });
     });
 
+
+    // ══════════════════════════════════════════════
+    //  CASE STUDIES — DATA & RENDERER
+    //  To add a new case study, add an object to the
+    //  CASE_STUDIES array below following the same
+    //  structure. That's it — the card renders automatically.
+    // ══════════════════════════════════════════════
+    const CASE_STUDIES = [
+      {
+        id: 1,
+        category: "CAFM / Digital FM",
+        emoji: "🏢",
+        bg: "linear-gradient(135deg, #071728 0%, #0E3A5C 100%)",
+        title: "CAFM Implementation Across 12-Building Master Community",
+        excerpt: "Digitised paper-based maintenance workflows for a 3,500-unit master community in Dubai, cutting reactive maintenance response time by 42%.",
+        outcome: "42% faster response time · AED 380K annual savings",
+        tags: ["CAFM", "PPM", "Wasl Communities", "Dubai", "Digital Transformation"],
+        story: `<h4>Challenge</h4>
+<p>A 12-building master community in Dubai was operating on manual work-order paperwork, resulting in an average 48-hour response time for reactive maintenance, missed PPM cycles, and no real-time visibility for the FM team or residents.</p>
+<h4>Approach</h4>
+<p>Led the end-to-end CAFM platform selection, configured the asset register covering 2,800+ assets, and trained a 22-person maintenance team over a 6-week rollout. Built PowerApps-based inspection checklists integrated directly into the CAFM ticketing queue.</p>
+<h4>Outcome</h4>
+<p>Reactive maintenance response time dropped from 48 hours to 28 hours (42% improvement) within 90 days. PPM compliance reached 94% (up from 61%). Annual estimated savings of AED 380,000 from reduced overtime and emergency call-outs.</p>`
+      },
+      {
+        id: 2,
+        category: "Community Management",
+        emoji: "🏡",
+        bg: "linear-gradient(135deg, #071728 0%, #1A2E1A 100%)",
+        title: "OA Governance Framework for Master Community",
+        excerpt: "Built an Owners Association governance structure from scratch, achieving RERA compliance and cutting resident complaint resolution time from 14 days to 4 days.",
+        outcome: "RERA compliant in 90 days · 71% faster complaint resolution",
+        tags: ["OA Governance", "RERA", "Community Management", "Compliance", "UAE"],
+        story: `<h4>Challenge</h4>
+<p>A newly handed-over master community had no functioning Owners Association governance structure, leaving RERA compliance gaps and a backlog of 200+ unresolved resident complaints with no formal escalation process.</p>
+<h4>Approach</h4>
+<p>Established the OA board constitution, drafted community rules aligned with RERA regulations, implemented a 3-tier complaint escalation workflow, and deployed a resident communication portal. Conducted monthly OA board meetings with structured agendas and minutes.</p>
+<h4>Outcome</h4>
+<p>Achieved full RERA compliance within 90 days. Complaint resolution time reduced from 14 days to 4 days. Resident satisfaction scores improved from 58% to 84% in the first 6-month survey cycle.</p>`
+      },
+      {
+        id: 3,
+        category: "Operational Excellence",
+        emoji: "✈️",
+        bg: "linear-gradient(135deg, #071728 0%, #1A1A30 100%)",
+        title: "PPM Programme Optimisation at Dubai Airports",
+        excerpt: "Restructured the Planned Preventive Maintenance schedule for critical airport infrastructure, achieving 100% uptime during peak travel season.",
+        outcome: "100% critical system uptime · 31% reduction in unplanned downtime",
+        tags: ["PPM", "Airport FM", "MEP", "BMS", "Critical Infrastructure"],
+        story: `<h4>Challenge</h4>
+<p>Critical mechanical and electrical systems at a major Dubai airport terminal were experiencing unplanned downtime averaging 3.2 incidents per month, with reactive spend running 38% above budget. PPM completion rates were at 67%.</p>
+<h4>Approach</h4>
+<p>Conducted a full asset criticality assessment across 1,400+ MEP assets. Restructured the PPM schedule using risk-priority matrix scoring, realigned technician shifts to maintenance windows, and introduced pre-shift toolbox talks with digital sign-off via Microsoft Teams.</p>
+<h4>Outcome</h4>
+<p>Zero critical system failures during the peak summer travel season. PPM completion rate reached 99.1%. Unplanned downtime incidents reduced by 31% year-on-year. Reactive maintenance spend dropped by AED 210,000 in the first 12 months.</p>`
+      },
+      {
+        id: 4,
+        category: "Digital Transformation",
+        emoji: "⚡",
+        bg: "linear-gradient(135deg, #071728 0%, #2A1A0E 100%)",
+        title: "PowerApps FM Inspection Platform — Zero-Paper Rollout",
+        excerpt: "Replaced 47 paper-based inspection checklists with a unified PowerApps platform, eliminating data entry lag and enabling real-time management dashboards.",
+        outcome: "Zero paper forms · 8-hour data lag eliminated · 3 FTE hours saved daily",
+        tags: ["PowerApps", "Power Automate", "Power BI", "Digital FM", "M365"],
+        story: `<h4>Challenge</h4>
+<p>FM operations relied on 47 distinct paper checklists across fire safety, MEP, soft services, and community inspections. Data was entered manually into spreadsheets with an average 8-hour lag, making management reporting reactive rather than real-time.</p>
+<h4>Approach</h4>
+<p>Designed and built a unified inspection platform on Microsoft PowerApps with offline-capable forms, photo capture, and automatic Power Automate flows to route findings to the correct supervisor with SLA timers. Power BI dashboards gave management live completion rates and open defect trends.</p>
+<h4>Outcome</h4>
+<p>All 47 checklists digitised and deployed within 11 weeks. 8-hour data lag eliminated — management dashboards now update in real time. Saved approximately 3 FTE hours per day previously spent on manual data entry. Adopted across 3 sites within 6 months of initial rollout.</p>`
+      }
+    ];
+
+    // ── Render case study cards
+    function renderCaseStudies() {
+      const grid = document.getElementById('cs-grid');
+      if (!grid) return;
+      grid.innerHTML = CASE_STUDIES.map((cs, i) => `
+        <div class="cs-card reveal reveal-delay-${(i % 3) + 1}" onclick="openCaseStudy(${cs.id})" role="button" tabindex="0" aria-label="Read case study: ${cs.title}" onkeydown="if(event.key==='Enter')openCaseStudy(${cs.id})">
+          <div class="cs-thumb" style="background:${cs.bg}">
+            <div class="cs-thumb-inner" style="font-size:56px">${cs.emoji}</div>
+            <span class="cs-category">${cs.category}</span>
+          </div>
+          <div class="cs-body">
+            <h3 class="cs-title">${cs.title}</h3>
+            <p class="cs-excerpt">${cs.excerpt}</p>
+            <div class="cs-outcome">📈 ${cs.outcome}</div>
+            <div class="cs-tags">
+              ${cs.tags.slice(0, 4).map(t => `<span class="cs-tag">${t}</span>`).join('')}
+            </div>
+            <span class="cs-read-btn">Read Full Case Study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      `).join('');
+      // Re-observe new reveal elements
+      document.querySelectorAll('#cs-grid .reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    // ── Open modal
+    function openCaseStudy(id) {
+      const cs = CASE_STUDIES.find(c => c.id === id);
+      if (!cs) return;
+      const modal = document.getElementById('cs-modal');
+      const content = document.getElementById('cs-modal-content');
+      content.innerHTML = `
+        <div class="cs-modal-cat">${cs.category}</div>
+        <h2 class="cs-modal-title">${cs.title}</h2>
+        <div class="cs-modal-outcome">📈 ${cs.outcome}</div>
+        <div class="cs-modal-body">${cs.story}</div>
+        <div class="cs-modal-tags">
+          ${cs.tags.map(t => `<span class="cs-tag">${t}</span>`).join('')}
+        </div>
+        <div style="margin-top:28px;text-align:center">
+          <a href="#contact" class="btn-primary" onclick="closeCaseStudy()">Discuss a Similar Challenge →</a>
+        </div>
+      `;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('cs-modal-close').focus();
+      if (typeof gtag !== 'undefined') gtag('event', 'case_study_view', { event_label: cs.title });
+    }
+
+    // ── Close modal
+    function closeCaseStudy() {
+      document.getElementById('cs-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('cs-modal-close').addEventListener('click', closeCaseStudy);
+    document.getElementById('cs-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeCaseStudy();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeCaseStudy();
+    });
+
+    // ── Init
+    renderCaseStudies();
+
+
+    // ══════════════════════════════════════════════
+    //  WEB3FORMS — CONTACT FORM HANDLER
+    // ══════════════════════════════════════════════
+    (function() {
+      const form     = document.getElementById('w3f');
+      if (!form) return;
+      const btn      = document.getElementById('w3f-submit');
+      const success  = document.getElementById('w3f-success');
+      const error    = document.getElementById('w3f-error');
+
+      function showFieldError(id, show) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = show ? 'block' : 'none';
+      }
+      function markField(el, invalid) {
+        el.classList.toggle('invalid', invalid);
+      }
+
+      function validateForm() {
+        let valid = true;
+        const name    = document.getElementById('w3f-name');
+        const email   = document.getElementById('w3f-email');
+        const message = document.getElementById('w3f-message');
+
+        const nameOk = name.value.trim().length >= 2;
+        markField(name, !nameOk);
+        showFieldError('err-name', !nameOk);
+        if (!nameOk) valid = false;
+
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+        markField(email, !emailOk);
+        showFieldError('err-email', !emailOk);
+        if (!emailOk) valid = false;
+
+        const msgOk = message.value.trim().length >= 5;
+        markField(message, !msgOk);
+        showFieldError('err-message', !msgOk);
+        if (!msgOk) valid = false;
+
+        return valid;
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        success.style.display = 'none';
+        error.style.display   = 'none';
+
+        if (!validateForm()) return;
+
+        btn.disabled = true;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending…';
+
+        try {
+          const data = new FormData(form);
+          const res  = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: data
+          });
+          const json = await res.json();
+
+          if (json.success) {
+            success.style.display = 'block';
+            form.reset();
+            if (typeof gtag !== 'undefined') gtag('event', 'contact_form_submit', { event_category: 'Lead' });
+          } else {
+            error.style.display = 'block';
+          }
+        } catch(err) {
+          error.style.display = 'block';
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Enquiry';
+        }
+      });
+
+      // Clear field errors on input
+      ['w3f-name','w3f-email','w3f-message'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', function() {
+          markField(el, false);
+          const errId = 'err-' + id.replace('w3f-','');
+          showFieldError(errId, false);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
