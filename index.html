@@ -1377,37 +1377,6 @@
 
 
 
-    /* TESTIMONIALS */
-    #testimonials { background: var(--cream); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 48px;
-    }
-    .testimonial-card {
-      background: var(--white);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-    .testimonial-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: rgba(200,151,60,.3);
-      transform: translateY(-3px);
-    }
-    .testimonial-stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
-    .testimonial-quote { font-size: 15px; color: var(--text-mid); line-height: 1.75; flex: 1; font-style: italic; margin-bottom: 24px; }
-    .testimonial-author { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border-light); padding-top: 18px; }
-    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--text); }
-    .testimonial-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-    @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .testimonials-grid { grid-template-columns: 1fr; } }
 
     /* ═══════════════════════════════════════════
        CONTACT FORM (Web3Forms)
@@ -1554,7 +1523,6 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
           <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
         </ul>
@@ -1567,7 +1535,6 @@
       <a href="#about" role="menuitem">About</a>
       <a href="#services" role="menuitem">Services</a>
       <a href="#skills" role="menuitem">Skills &amp; Expertise</a>
-      <a href="#testimonials" role="menuitem">Testimonials</a>
       <a href="#case-studies" role="menuitem">Case Studies</a>
       <a href="#contact" role="menuitem">Contact</a>
       <a href="#contact" class="nav-cta-mobile">Get In Touch ↗</a>
@@ -1861,43 +1828,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="section" aria-label="Testimonials">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">What Others Say</span>
-        <span class="gold-line"></span>
-        <h2 class="section-h2">Trusted by Leaders<br>Across the GCC</h2>
-        <p class="section-sub">Feedback from managers, clients, and colleagues I&apos;ve worked with across Dubai, the GCC, and India.</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">Raneesh transformed our community operations from reactive chaos to a structured, data-driven system. His CAFM rollout cut our maintenance backlog by nearly half within three months. Rarely do you find someone who combines technical depth with genuine operational instinct.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">AK</div>
-            <div><div class="testimonial-name">Ahmed K.</div><div class="testimonial-role">General Manager, Master Community &middot; Dubai</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">The PowerApps inspection platform Raneesh built replaced our entire paper-based system in under 12 weeks. Our supervisors now have real-time dashboards, and we&apos;ve eliminated the daily data-entry bottleneck completely. A high-impact delivery, professionally executed.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">SR</div>
-            <div><div class="testimonial-name">Sanjay R.</div><div class="testimonial-role">Operations Director, FM Services &middot; UAE</div></div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">Raneesh&apos;s expertise in OA governance was exactly what our newly handed-over community needed. He established the RERA-compliant framework from zero, resolved our complaint backlog, and had residents trusting the process within 90 days. Exceptional professional.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">FH</div>
-            <div><div class="testimonial-name">Fatima H.</div><div class="testimonial-role">Community Manager, Residential Development &middot; Dubai</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- ═══════════════════════════════════════════
        CASE STUDIES
