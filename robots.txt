@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raneesh-mr.github.io/sitemap.xml
+Sitemap: https://raneesh.net/sitemap.xml
