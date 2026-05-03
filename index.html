@@ -1923,10 +1923,7 @@
             <p class="w3f-title">Send an Enquiry</p>
             <p class="w3f-sub">I&apos;ll respond within 24 hours. Fields marked <span style="color:#C8973C">*</span> are required.</p>
             <form id="w3f" novalidate>
-              <input type="hidden" name="access_key" value="9be8fa4f-a393-464b-8774-abee3f82ee72" />
-              <input type="hidden" name="subject" value="New Enquiry — raneesh.net" />
-              <input type="hidden" name="from_name" value="Raneesh Website" />
-              <input type="checkbox" name="botcheck" style="display:none" />
+              <!-- Form handled by /api/contact → Resend + Supabase -->
 
               <div class="w3f-row">
                 <div class="w3f-group">
@@ -2332,7 +2329,7 @@
 
 
     // ══════════════════════════════════════════════
-    //  WEB3FORMS — CONTACT FORM HANDLER
+    //  CONTACT FORM — Resend + Supabase via /api/contact
     // ══════════════════════════════════════════════
     (function() {
       const form     = document.getElementById('w3f');
@@ -2353,69 +2350,4 @@
         let valid = true;
         const name    = document.getElementById('w3f-name');
         const email   = document.getElementById('w3f-email');
-        const message = document.getElementById('w3f-message');
-
-        const nameOk = name.value.trim().length >= 2;
-        markField(name, !nameOk);
-        showFieldError('err-name', !nameOk);
-        if (!nameOk) valid = false;
-
-        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
-        markField(email, !emailOk);
-        showFieldError('err-email', !emailOk);
-        if (!emailOk) valid = false;
-
-        const msgOk = message.value.trim().length >= 5;
-        markField(message, !msgOk);
-        showFieldError('err-message', !msgOk);
-        if (!msgOk) valid = false;
-
-        return valid;
-      }
-
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        success.style.display = 'none';
-        error.style.display   = 'none';
-
-        if (!validateForm()) return;
-
-        btn.disabled = true;
-        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending…';
-
-        try {
-          const data = new FormData(form);
-          const res  = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: data
-          });
-          const json = await res.json();
-
-          if (json.success) {
-            success.style.display = 'block';
-            form.reset();
-            if (typeof gtag !== 'undefined') gtag('event', 'contact_form_submit', { event_category: 'Lead' });
-          } else {
-            error.style.display = 'block';
-          }
-        } catch(err) {
-          error.style.display = 'block';
-        } finally {
-          btn.disabled = false;
-          btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Enquiry';
-        }
-      });
-
-      // Clear field errors on input
-      ['w3f-name','w3f-email','w3f-message'].forEach(function(id) {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', function() {
-          markField(el, false);
-          const errId = 'err-' + id.replace('w3f-','');
-          showFieldError(errId, false);
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+        const message = document.getElementById('w3f-message
