@@ -131,16 +131,12 @@
     }
     .sr-only { position: absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
 
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Scroll reveal — JS-gated so content is ALWAYS visible without JS.
+       The .js-reveal class is added to <html> by the script below.
+       Without JS (or if script errors), all content remains fully visible. */
+    .reveal { transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js-reveal .reveal { opacity: 0; transform: translateY(32px); }
+    .reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
     .reveal-delay-1 { transition-delay: .1s; }
     .reveal-delay-2 { transition-delay: .2s; }
     .reveal-delay-3 { transition-delay: .3s; }
@@ -990,70 +986,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .form-btn-whatsapp {
-      background: #25D366;
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      transition: var(--transition);
-      font-family: var(--font-body);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: none;
-    }
-    .form-btn-whatsapp:hover {
-      background: #1ebe5d;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(37,211,102,.35);
-    }
-    .form-btn-email {
-      background: transparent;
-      color: var(--gold);
-      padding: 15px 20px;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      transition: var(--transition);
-      font-family: var(--font-body);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid rgba(200,151,60,.5);
-    }
-    .form-btn-email:hover {
-      background: rgba(200,151,60,.1);
-      border-color: var(--gold);
-      transform: translateY(-1px);
-    }
-    @media (max-width: 480px) {
-      .form-buttons { grid-template-columns: 1fr; }
-    }
-    .form-success {
-      display: none;
-      background: rgba(200,151,60,.1);
-      border: 1px solid rgba(200,151,60,.3);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      text-align: center;
-      color: var(--gold-light);
-      font-size: 15px;
-    }
-    .form-note {
-      font-size: 12px;
-      color: rgba(255,255,255,.3);
-      text-align: center;
-    }
 
     /* ═══════════════════════════════════════════
        FOOTER
@@ -1152,7 +1084,7 @@
     #case-studies { background: var(--navy); }
     .cs-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 28px;
       margin-top: 48px;
     }
@@ -1369,7 +1301,6 @@
       color: var(--gold);
       font-size: 12px;
     }
-    @media (max-width: 1024px) { .cs-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 640px) {
       .cs-grid { grid-template-columns: 1fr; }
       .cs-modal { padding: 28px 20px; }
@@ -2019,6 +1950,9 @@
        JAVASCRIPT
   ═══════════════════════════════════════════ -->
   <script>
+    // ── Enable JS-gated scroll-reveal animations
+    document.documentElement.classList.add('js-reveal');
+
     // ── Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -2061,7 +1995,7 @@
           revealObserver.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ── Animated counters
@@ -2083,94 +2017,6 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
-
-    // ── Collect and validate form fields
-    function getFormData() {
-      const name    = document.getElementById('form-name').value.trim();
-      const phone   = document.getElementById('form-phone').value.trim();
-      const company = document.getElementById('form-company').value.trim();
-      const service = document.getElementById('form-service').value.trim();
-      const message = document.getElementById('form-message').value.trim();
-      return { name, phone, company, service, message };
-    }
-
-    function validateForm() {
-      const { name, message } = getFormData();
-      if (!name) {
-        document.getElementById('form-name').focus();
-        alert('Please enter your full name.');
-        return false;
-      }
-      if (!message) {
-        document.getElementById('form-message').focus();
-        alert('Please enter a message.');
-        return false;
-      }
-      return true;
-    }
-
-    // ── Send via WhatsApp
-    // Opens wa.me deep-link — works on mobile (app) and desktop (WhatsApp Web)
-    function sendViaWhatsApp() {
-      if (!validateForm()) return;
-      const { name, phone, company, service, message } = getFormData();
-
-      const lines = [
-        '👋 *New Enquiry from raneesh.net*',
-        '',
-        `*Name:* ${name}`,
-        phone   ? `*Phone:* ${phone}`   : null,
-        company ? `*Company:* ${company}` : null,
-        service ? `*Interest:* ${service}` : null,
-        '',
-        `*Message:*`,
-        message
-      ].filter(l => l !== null).join('\n');
-
-      const encoded = encodeURIComponent(lines);
-      // +971556469921 — no spaces, no dashes, no + in the number path
-      const url = `https://wa.me/971556469921?text=${encoded}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
-
-      // GA4 event (if configured)
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'contact_whatsapp', { event_category: 'Lead', event_label: service || 'General' });
-      }
-    }
-
-    // ── Send via Email
-    // Opens mailto: with all fields pre-filled — works on mobile and desktop mail clients
-    function sendViaEmail() {
-      if (!validateForm()) return;
-      const { name, phone, company, service, message } = getFormData();
-
-      const subject = encodeURIComponent(
-        service ? `Enquiry: ${service} — ${name}` : `Enquiry from ${name}`
-      );
-
-      const body = encodeURIComponent(
-        [
-          `Name: ${name}`,
-          phone   ? `Phone: ${phone}`   : null,
-          company ? `Company: ${company}` : null,
-          service ? `Interest: ${service}` : null,
-          '',
-          'Message:',
-          message,
-          '',
-          '---',
-          'Sent via raneesh.net'
-        ].filter(l => l !== null).join('\n')
-      );
-
-      const mailtoUrl = `mailto:raneesh.mr08@gmail.com?subject=${subject}&body=${body}`;
-      window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
-
-      // GA4 event (if configured)
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'contact_email', { event_category: 'Lead', event_label: service || 'General' });
-      }
-    }
 
     // ── Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2332,11 +2178,11 @@
     //  CONTACT FORM — Resend + Supabase via /api/contact
     // ══════════════════════════════════════════════
     (function() {
-      const form     = document.getElementById('w3f');
+      const form    = document.getElementById('w3f');
       if (!form) return;
-      const btn      = document.getElementById('w3f-submit');
-      const success  = document.getElementById('w3f-success');
-      const error    = document.getElementById('w3f-error');
+      const btn     = document.getElementById('w3f-submit');
+      const success = document.getElementById('w3f-success');
+      const error   = document.getElementById('w3f-error');
 
       function showFieldError(id, show) {
         const el = document.getElementById(id);
@@ -2350,4 +2196,66 @@
         let valid = true;
         const name    = document.getElementById('w3f-name');
         const email   = document.getElementById('w3f-email');
-        const message = document.getElementById('w3f-message
+        const message = document.getElementById('w3f-message');
+
+        markField(name, !name.value.trim());
+        showFieldError('err-name', !name.value.trim());
+        if (!name.value.trim()) valid = false;
+
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        markField(email, !emailRe.test(email.value.trim()));
+        showFieldError('err-email', !emailRe.test(email.value.trim()));
+        if (!emailRe.test(email.value.trim())) valid = false;
+
+        markField(message, !message.value.trim());
+        showFieldError('err-message', !message.value.trim());
+        if (!message.value.trim()) valid = false;
+
+        return valid;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        success.style.display = 'none';
+        error.style.display = 'none';
+
+        const data = {
+          name:     document.getElementById('w3f-name').value.trim(),
+          email:    document.getElementById('w3f-email').value.trim(),
+          phone:    document.getElementById('w3f-phone').value.trim(),
+          company:  document.getElementById('w3f-company').value.trim(),
+          interest: document.getElementById('w3f-interest').value.trim(),
+          message:  document.getElementById('w3f-message').value.trim()
+        };
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          if (res.ok) {
+            success.style.display = 'block';
+            form.reset();
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'form_submit', { event_category: 'Lead', event_label: data.interest || 'General' });
+            }
+          } else {
+            error.style.display = 'block';
+          }
+        } catch (err) {
+          error.style.display = 'block';
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Enquiry';
+      });
+    })();
+
+  </script>
+</body>
+</html>
