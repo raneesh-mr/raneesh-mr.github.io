@@ -1079,6 +1079,192 @@
     }
 
     /* ═══════════════════════════════════════════
+       ARTICLES
+    ═══════════════════════════════════════════ */
+    #articles { background: var(--white); }
+
+    /* Featured hero card */
+    .art-featured {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      margin-bottom: 28px;
+    }
+    .art-featured-img {
+      position: relative;
+      min-height: 280px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .art-featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; top: 0; left: 0;
+      transition: transform 0.5s var(--transition);
+    }
+    .art-featured:hover .art-featured-img img { transform: scale(1.04); }
+    .art-featured-body {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .art-cat {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .art-cat-ai     { background: #dbeafe; color: #1d4ed8; }
+    .art-cat-cafm   { background: #dcfce7; color: #15803d; }
+    .art-cat-cm     { background: #f3e8ff; color: #7e22ce; }
+    .art-cat-future { background: #fff7ed; color: #c2410c; }
+    .art-cat-default{ background: var(--gold-pale); color: var(--gold); }
+
+    .art-featured-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .art-featured-excerpt {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .art-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .art-meta-dot { color: var(--border); }
+    .art-read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+      width: fit-content;
+    }
+    .art-read-btn:hover { background: var(--gold); color: var(--navy); }
+
+    /* 3-card grid */
+    .art-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .art-card {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .art-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .art-card-img {
+      height: 150px;
+      overflow: hidden;
+      background: var(--navy);
+      position: relative;
+    }
+    .art-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--transition);
+    }
+    .art-card:hover .art-card-img img { transform: scale(1.06); }
+    .art-card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .art-card-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+      margin: 10px 0 8px;
+      flex: 1;
+    }
+    .art-card-excerpt {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .art-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+      margin-top: auto;
+    }
+    .art-card-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .art-card-link {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      transition: color var(--transition);
+    }
+    .art-card-link:hover { color: var(--navy); }
+
+    /* Skeleton loader */
+    .art-skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite; }
+    @keyframes skeleton-pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    .art-skel-box {
+      background: var(--border-light);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .art-featured { grid-template-columns: 1fr; }
+      .art-featured-img { min-height: 220px; }
+    }
+    @media (max-width: 768px) {
+      .art-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
        CASE STUDIES
     ═══════════════════════════════════════════ */
     #case-studies { background: var(--navy); }
@@ -1455,6 +1641,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#articles">Articles</a></li>
           <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
         </ul>
         <button class="nav-hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
@@ -1792,6 +1979,26 @@
   </div>
 
   <!-- ═══════════════════════════════════════════
+       ARTICLES
+  ═══════════════════════════════════════════ -->
+  <section id="articles" class="section" aria-label="LinkedIn Articles">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Insights &amp; Articles</span>
+        <span class="gold-line"></span>
+        <h2 class="section-h2">Published on LinkedIn</h2>
+        <p class="section-sub">Thoughts on FM, community management, and the future of work — drawn from 20 years on the ground across the GCC.</p>
+      </div>
+
+      <!-- Featured article (latest) -->
+      <div id="art-featured-wrap" class="reveal"></div>
+
+      <!-- 3-card grid -->
+      <div id="art-grid" class="art-grid reveal reveal-delay-1"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        CONTACT
   ═══════════════════════════════════════════ -->
   <section id="contact" class="section section-dark" aria-label="Contact">
@@ -1950,6 +2157,10 @@
        JAVASCRIPT
   ═══════════════════════════════════════════ -->
   <script>
+    // ── Supabase config (anon key is safe to expose — RLS protects the data)
+    const SUPABASE_URL      = 'https://ecpcbumcqzsgrknmwwaq.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcGNidW1jcXpzZ3Jrbm13d2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NjMyNzksImV4cCI6MjA5MzMzOTI3OX0.rRJTZYkpcDKMYS5Oh5b17Uj1GW45P4Qwza0P_yLmWXI';
+
     // ── Enable JS-gated scroll-reveal animations
     document.documentElement.classList.add('js-reveal');
 
@@ -2089,6 +2300,7 @@
 <h4>Outcome</h4>
 <p>Zero critical system failures during the peak summer travel season. PPM completion rate reached 99.1%. Unplanned downtime incidents reduced by 31% year-on-year. Reactive maintenance spend dropped by AED 210,000 in the first 12 months.</p>`
       },
+      },
       {
         id: 4,
         category: "Digital Transformation",
@@ -2128,7 +2340,6 @@
           </div>
         </div>
       `).join('');
-      // Re-observe new reveal elements
       document.querySelectorAll('#cs-grid .reveal').forEach(el => revealObserver.observe(el));
     }
 
@@ -2136,7 +2347,7 @@
     function openCaseStudy(id) {
       const cs = CASE_STUDIES.find(c => c.id === id);
       if (!cs) return;
-      const modal = document.getElementById('cs-modal');
+      const modal   = document.getElementById('cs-modal');
       const content = document.getElementById('cs-modal-content');
       content.innerHTML = `
         <div class="cs-modal-cat">${cs.category}</div>
@@ -2170,7 +2381,7 @@
       if (e.key === 'Escape') closeCaseStudy();
     });
 
-    // ── Init
+    // ── Init case studies
     renderCaseStudies();
 
 
@@ -2255,6 +2466,97 @@
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Enquiry';
       });
     })();
+
+
+    // ══════════════════════════════════════════════
+    //  ARTICLES — fetch from Supabase, render Option A
+    //  Featured hero (latest) + 3-card grid below
+    //  Sorted: published_date DESC, sort_order ASC
+    // ══════════════════════════════════════════════
+    function artCatClass(cat) {
+      const map = {
+        'AI & FM':        'art-cat-ai',
+        'CAFM':           'art-cat-cafm',
+        'Community Mgmt': 'art-cat-cm',
+        'Future of Work': 'art-cat-future'
+      };
+      return map[cat] || 'art-cat-default';
+    }
+
+    function artFormatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+    }
+
+    function renderArticles(articles) {
+      const featuredWrap = document.getElementById('art-featured-wrap');
+      const grid         = document.getElementById('art-grid');
+      if (!featuredWrap || !grid || !articles.length) return;
+
+      const featured  = articles[0];
+      const remaining = articles.slice(1);
+
+      featuredWrap.innerHTML = `
+        <a class="art-featured" href="${featured.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${featured.title}">
+          <div class="art-featured-img">
+            <img src="${featured.cover_image_url}" alt="${featured.title}" loading="lazy" />
+          </div>
+          <div class="art-featured-body">
+            <span class="art-cat ${artCatClass(featured.category)}">${featured.category}</span>
+            <h3 class="art-featured-title">${featured.title}</h3>
+            <p class="art-featured-excerpt">${featured.excerpt_short}</p>
+            <div class="art-meta">
+              <span>${artFormatDate(featured.published_date)}</span>
+              <span class="art-meta-dot">·</span>
+              <span>${featured.read_time_minutes} min read</span>
+            </div>
+            <span class="art-read-btn">Read on LinkedIn
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      `;
+
+      grid.innerHTML = remaining.map((a, i) => `
+        <a class="art-card reveal reveal-delay-${i + 1}" href="${a.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${a.title}">
+          <div class="art-card-img">
+            <img src="${a.cover_image_url}" alt="${a.title}" loading="lazy" />
+          </div>
+          <div class="art-card-body">
+            <span class="art-cat ${artCatClass(a.category)}">${a.category}</span>
+            <h3 class="art-card-title">${a.title}</h3>
+            <p class="art-card-excerpt">${a.excerpt_short}</p>
+            <div class="art-card-footer">
+              <span class="art-card-meta">${artFormatDate(a.published_date)} · ${a.read_time_minutes} min</span>
+              <span class="art-card-link">Read →</span>
+            </div>
+          </div>
+        </a>
+      `).join('');
+
+      document.querySelectorAll('#art-grid .reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    async function loadArticles() {
+      if (SUPABASE_URL.includes('YOUR_PROJECT_REF') || SUPABASE_ANON_KEY.includes('YOUR_ANON_KEY')) return;
+      try {
+        const url = `${SUPABASE_URL}/rest/v1/articles?status=eq.published&order=published_date.desc,sort_order.asc&limit=4&select=title,slug,excerpt_short,linkedin_url,cover_image_url,published_date,category,read_time_minutes`;
+        const res = await fetch(url, {
+          headers: {
+            'apikey':        SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        if (!res.ok) return;
+        const articles = await res.json();
+        if (articles.length) renderArticles(articles);
+      } catch (e) {
+        // Fail silently — section stays hidden if Supabase unreachable
+      }
+    }
+
+    loadArticles();
 
   </script>
 </body>
