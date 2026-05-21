@@ -170,10 +170,10 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(7,23,40,.97);
+      background: rgba(10,10,10,.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(200,151,60,.15);
+      border-bottom: 1px solid #c9a84c;
       transition: var(--transition);
     }
     #nav.scrolled {
@@ -286,40 +286,21 @@
        HERO
     ═══════════════════════════════════════════ */
     #hero {
-      min-height: 100vh;
-      background: var(--navy);
+      height: 100svh;
+      min-height: 600px;
+      background: #0a0a0a;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       overflow: hidden;
-      padding-top: 68px;
+      padding-top: 78px;
     }
 
-    /* Blueprint grid background */
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(200,151,60,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,151,60,.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
+    /* Blueprint grid — disabled; canvas animation provides its own grid */
+    #hero::before { display: none; }
 
-    /* Diagonal gold slash */
-    #hero::after {
-      content: '';
-      position: absolute;
-      top: -20%;
-      right: -5%;
-      width: 55%;
-      height: 140%;
-      background: linear-gradient(135deg, rgba(200,151,60,.04) 0%, rgba(200,151,60,.08) 100%);
-      transform: skewX(-8deg);
-      pointer-events: none;
-    }
+    /* Diagonal slash — disabled; replaced by canvas animation */
+    #hero::after { display: none; }
 
     /* Orb glow */
     .hero-glow {
@@ -336,16 +317,16 @@
       z-index: 2;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 80px;
+      gap: 60px;
       align-items: center;
-      padding: 80px 0;
+      padding: 12px 0;
     }
 
     .hero-eyebrow {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
     .hero-eyebrow-line {
       width: 36px; height: 2px;
@@ -353,43 +334,48 @@
     }
     .hero-eyebrow-text {
       font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-light);
+      text-shadow: 0 0 20px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,0.9);
     }
 
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(52px, 7vw, 88px);
+      font-size: clamp(44px, 6vw, 80px);
       font-weight: 900;
       line-height: 1.0;
       color: var(--white);
       letter-spacing: -.03em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 24px rgba(0,0,0,.7);
     }
     .hero-name-accent {
       display: block;
       color: var(--gold);
       font-style: italic;
-      font-size: clamp(28px, 3.5vw, 44px);
+      font-size: clamp(24px, 3vw, 38px);
+      text-shadow: 0 2px 20px rgba(0,0,0,.6);
     }
 
     .hero-title {
-      font-size: clamp(18px, 2.5vw, 24px);
+      font-size: clamp(16px, 2vw, 21px);
       font-weight: 400;
-      color: rgba(255,255,255,.55);
-      margin-bottom: 28px;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 10px;
       letter-spacing: .01em;
+      text-shadow: 0 1px 12px rgba(0,0,0,.9);
     }
 
     .hero-desc {
       font-size: 16px;
-      line-height: 1.8;
-      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      color: rgba(255,255,255,.75);
       max-width: 520px;
-      margin-bottom: 44px;
+      margin-bottom: 0;
+      text-shadow: 0 1px 10px rgba(0,0,0,.85);
     }
 
     .hero-actions {
@@ -442,18 +428,18 @@
       flex-shrink: 0;
     }
     .hero-avatar-frame {
-      width: 280px;
-      height: 340px;
+      width: 250px;
+      height: 300px;
       border-radius: var(--radius-lg);
       overflow: hidden;
       position: relative;
-      border: 2px solid rgba(200,151,60,.3);
-      box-shadow: var(--shadow-lg), 0 0 60px rgba(200,151,60,.15);
+      border: none;
+      box-shadow: none;
     }
     .hero-avatar-frame img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: center 10%;
     }
     .hero-avatar-placeholder {
       width: 100%; height: 100%;
@@ -467,58 +453,55 @@
       color: var(--gold);
       letter-spacing: -.05em;
     }
-    /* Corner accents */
-    .hero-avatar-frame::before {
-      content: '';
-      position: absolute;
-      top: -2px; right: -2px;
-      width: 30px; height: 30px;
-      border-top: 3px solid var(--gold);
-      border-right: 3px solid var(--gold);
-      z-index: 2;
-    }
-    .hero-avatar-frame::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: -2px;
-      width: 30px; height: 30px;
-      border-bottom: 3px solid var(--gold);
-      border-left: 3px solid var(--gold);
-      z-index: 2;
-    }
+    /* Corner accents removed — image blends into dark background via vignette */
+    .hero-avatar-frame::before,
+    .hero-avatar-frame::after { display: none; }
 
     .hero-cert-badge {
       position: absolute;
-      bottom: -16px;
-      right: -24px;
-      background: var(--gold);
-      color: var(--navy);
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 11px;
-      line-height: 1.3;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      background: #111111;
+      border-top: 1px solid #c9a84c;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      padding: 10px 16px;
       text-align: center;
-      letter-spacing: .03em;
-      box-shadow: var(--shadow-gold);
+      font-family: var(--font-body);
     }
     .hero-cert-badge strong {
       display: block;
-      font-size: 20px;
-      line-height: 1;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #c9a84c;
+      letter-spacing: .02em;
       margin-bottom: 2px;
+    }
+    .hero-cert-badge span {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
     }
 
     /* Stats strip */
     .hero-stats {
       position: relative;
-      z-index: 2;
+      z-index: 10;
+      flex-shrink: 0;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid rgba(200,151,60,.15);
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid rgba(200,151,60,.2);
+      background: rgba(10,10,10,.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .hero-stat {
-      padding: 28px 32px;
+      padding: 16px 12px;
       border-right: 1px solid rgba(200,151,60,.1);
       text-align: center;
     }
@@ -534,10 +517,56 @@
     }
     .hero-stat-label {
       font-size: 12px;
-      color: rgba(255,255,255,.45);
+      color: #999999;
       font-weight: 500;
       letter-spacing: .05em;
       text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO CANVAS ANIMATION LAYER
+    ═══════════════════════════════════════════ */
+    #hero-canvas-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #hero-canvas-stage canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #hero-fact-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    /* Floating FM stat cards — appear only on right side of canvas, low opacity */
+    .fc { position: absolute; pointer-events: none; opacity: 0; }
+    .fc-line { width: 24px; height: 1px; background: #2a2a2a; margin-bottom: 8px; }
+    .fc-stat { font-size: 20px; font-weight: 700; color: rgba(255,255,255,.72); letter-spacing: -1px; line-height: 1; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .fc-label { font-size: 10px; color: rgba(255,255,255,.52); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 5px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+    /* Hero main content wrapper — sits above the canvas */
+    .hero-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      min-height: 0;
+    }
+
+    /* Headshot vignette — blends image edges to solid #0a0a0a */
+    .hero-avatar-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at center, transparent 45%, #0a0a0a 88%);
+      pointer-events: none;
+      border-radius: inherit;
     }
 
     /* ═══════════════════════════════════════════
@@ -1052,6 +1081,9 @@
     /* ═══════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════ */
+    @media (min-width: 1025px) {
+      .hero-text { padding-left: 48px; }
+    }
     @media (max-width: 1024px) {
       .hero-content { grid-template-columns: 1fr; gap: 48px; }
       .hero-avatar-wrap { display: none; }
@@ -1673,7 +1705,15 @@
        HERO
   ═══════════════════════════════════════════ -->
   <section id="hero" aria-label="Introduction">
-    <div class="hero-glow" aria-hidden="true"></div>
+
+    <!-- Canvas animation layer — z-index: 0, behind all content -->
+    <div id="hero-canvas-stage" aria-hidden="true">
+      <canvas id="hero-canvas"></canvas>
+      <div id="hero-fact-layer"></div>
+    </div>
+
+    <!-- Hero main content wrapper — z-index: 10, above canvas -->
+    <div class="hero-main">
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
@@ -1689,29 +1729,23 @@
           <p class="hero-desc" data-reveal>
             Innovating digital solutions to help people for a smarter future. Two decades of delivering operational excellence across master communities, airports, data centres, and commercial FM — in the GCC &amp; India. Turning data into information, information into knowledge, and knowledge into wisdom.
           </p>
-          <div class="hero-actions" data-reveal>
-            <a href="#contact" class="btn-primary">
-              Book a Discovery Call <span aria-hidden="true">→</span>
-            </a>
-            <a href="#services" class="btn-outline">
-              View Services
-            </a>
-          </div>
         </div>
 
         <div class="hero-avatar-wrap" aria-hidden="true">
           <div class="hero-avatar-frame">
             <img src="headshot.webp" alt="Raneesh | Facilities & Digital Transformation Specialist" loading="eager" />
+            <div class="hero-avatar-vignette" aria-hidden="true"></div>
           </div>
           <div class="hero-cert-badge">
             <strong>20+ Yrs.</strong>
-            UAE &amp; INDIA
+            <span>UAE &amp; INDIA</span>
           </div>
         </div>
       </div>
     </div>
+    </div><!-- /hero-main -->
 
-    <!-- Stats -->
+    <!-- Stats strip — z-index: 10, always visible at bottom of viewport -->
     <div class="hero-stats" aria-label="Key statistics">
       <div class="hero-stat">
         <div class="hero-stat-num" data-count="20">0</div>
@@ -1722,12 +1756,16 @@
         <div class="hero-stat-label">Industry Sectors</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="9">0</div>
+        <div class="hero-stat-num" data-count="10">0</div>
         <div class="hero-stat-label">Services Offered</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num" data-count="4">0</div>
         <div class="hero-stat-label">Certifications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">37K+</div>
+        <div class="hero-stat-label">Assets Managed</div>
       </div>
     </div>
   </section>
@@ -1818,6 +1856,12 @@
           <div class="service-icon" aria-hidden="true">🤖</div>
           <h3 class="service-title">AI &amp; Digital Integration</h3>
           <p class="service-desc">Strategic digital tools implementation — PowerApps, Power Automate, and AI to automate maintenance workflows, enhance predictive capabilities, and turn raw data into actionable wisdom for FM operations.</p>
+          <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon" aria-hidden="true">🎓</div>
+          <h3 class="service-title">FM Staff Training</h3>
+          <p class="service-desc">Structured training programmes for facilities management teams — covering operational standards, PPM execution, CAFM usage, HSE compliance, and service excellence to upskill staff and raise performance benchmarks.</p>
           <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
         </div>
         <div class="service-card full reveal">
@@ -2566,6 +2610,157 @@
     }
 
     loadArticles();
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       HERO CANVAS ANIMATION
+       - Canvas is z-index:0 inside #hero-canvas-stage (absolute)
+       - All hero text/image sits in .hero-main at z-index:10
+       - Fact cards restricted to right 38% of canvas (away from headline)
+       - Fact card max opacity: 0.32 (background texture, not foreground)
+  ═══════════════════════════════════════════ -->
+  <script>
+  (function(){
+    const cv  = document.getElementById('hero-canvas');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const st  = document.getElementById('hero-canvas-stage');
+    const fl  = document.getElementById('hero-fact-layer');
+    let W, H;
+
+    function rsz(){ W = cv.width = st.offsetWidth; H = cv.height = st.offsetHeight; }
+    rsz();
+    window.addEventListener('resize', rsz);
+
+    const facts = [
+      {s:'4.22M+',  l:'sq ft managed'},
+      {s:'1,499',   l:'residential & retail units'},
+      {s:'66+',     l:'vendors managed'},
+      {s:'34.5M',   l:'AED opex / capex budget'},
+      {s:'ISO 9001',l:'quality certified'},
+      {s:'CAFM',    l:'maximo · JD edwards'},
+      {s:'37K+',    l:'assets managed'},
+      {s:'20+ yrs', l:'GCC FM experience'},
+      {s:'PPM',     l:'preventive maintenance'},
+      {s:'RERA',    l:'regulatory compliance'},
+    ];
+
+    const cards = facts.map(f => {
+      const el = document.createElement('div');
+      el.className = 'fc';
+      el.innerHTML = `<div class="fc-line"></div><div class="fc-stat">${f.s}</div><div class="fc-label">${f.l}</div>`;
+      fl.appendChild(el);
+      return el;
+    });
+
+    const N = 16;
+    const nodes = [];
+    const TYPES = ['hub','hub','building','building','building','data','data','data','data','asset','asset','asset','asset','asset','asset','asset'];
+    TYPES.forEach(t => {
+      const r = t==='hub' ? 18+Math.random()*10 : t==='building' ? 10+Math.random()*7 : t==='data' ? 5+Math.random()*5 : 3+Math.random()*4;
+      nodes.push({
+        x: 80 + Math.random()*((W||900)-160),
+        y: 80 + Math.random()*((H||700)-160),
+        r, t,
+        vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25,
+        ph: Math.random()*Math.PI*2, ps: .018+Math.random()*.018,
+        ba: .12+Math.random()*.5, a: 0
+      });
+    });
+
+    const conns = [];
+    for (let i=0; i<N; i++)
+      for (let j=i+1; j<N; j++)
+        if (Math.random()<.3) conns.push({a:i, b:j});
+
+    const parts = [];
+    conns.forEach((c,i) => {
+      if (Math.random()>.35) parts.push({ci:i, t:Math.random(), sp:.003+Math.random()*.004, sz:1.2+Math.random()*1.6});
+    });
+
+    let fi=0, nxt=2200, last=0;
+
+    function showFact(){
+      const el = cards[fi % cards.length];
+      // Appear in the centre band — between text column (ends ~35%) and headshot (starts ~72%)
+      const safeX = W * 0.36 + Math.random() * (W * 0.34);
+      const safeY = H * 0.08 + Math.random() * (H * 0.58);
+      el.style.left = safeX + 'px';
+      el.style.top  = safeY + 'px';
+      el.style.transition = 'opacity 0.9s ease';
+      el.style.opacity = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => {
+        el.style.opacity = '0.46'; // readable but still reads as background layer
+        setTimeout(() => {
+          el.style.transition = 'opacity 1.4s ease';
+          el.style.opacity = '0';
+        }, 2600);
+      });});
+      fi++;
+    }
+
+    function frame(ts){
+      const dt = last ? ts-last : 16; last = ts;
+      nxt -= dt; if (nxt <= 0){ showFact(); nxt = 3400 + Math.random()*1200; }
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Subtle grid
+      ctx.save(); ctx.strokeStyle = 'rgba(255,255,255,0.022)'; ctx.lineWidth = .5;
+      for (let x=0; x<W; x+=60){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+      for (let y=0; y<H; y+=60){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+      ctx.restore();
+
+      // Move nodes
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < n.r || n.x > W-n.r) n.vx *= -1;
+        if (n.y < n.r || n.y > H-n.r) n.vy *= -1;
+        n.ph += n.ps; n.a = n.ba + Math.sin(n.ph)*.14;
+      });
+
+      // Connection lines
+      conns.forEach(c => {
+        const a = nodes[c.a], b = nodes[c.b];
+        const dx = b.x-a.x, dy = b.y-a.y, d = Math.sqrt(dx*dx+dy*dy);
+        if (d > 290) return;
+        const op = .06 + .06*(1-d/290);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle = `rgba(255,255,255,${op})`; ctx.lineWidth = .6; ctx.stroke();
+      });
+
+      // Travelling particles
+      parts.forEach(p => {
+        p.t += p.sp; if (p.t > 1) p.t = 0;
+        const c = conns[p.ci]; if (!c) return;
+        const a = nodes[c.a], b = nodes[c.b];
+        const dx = b.x-a.x, dy = b.y-a.y, d = Math.sqrt(dx*dx+dy*dy);
+        if (d > 290) return;
+        ctx.beginPath(); ctx.arc(a.x+dx*p.t, a.y+dy*p.t, p.sz, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,0.75)'; ctx.fill();
+      });
+
+      // Node circles
+      nodes.forEach(n => {
+        const pr = n.r + 3 + Math.sin(n.ph)*1.5;
+        ctx.beginPath(); ctx.arc(n.x,n.y,pr,0,Math.PI*2);
+        ctx.strokeStyle = `rgba(255,255,255,${n.a*.22})`; ctx.lineWidth = .5; ctx.stroke();
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+        const fill = n.t==='hub'      ? `rgba(255,255,255,${n.a*.95})`  :
+                     n.t==='building' ? `rgba(200,200,200,${n.a*.75})` :
+                     n.t==='data'     ? `rgba(120,120,120,${n.a*.65})` :
+                                        `rgba(80,80,80,${n.a*.55})`;
+        ctx.fillStyle = fill; ctx.fill();
+        if (n.t === 'hub'){
+          ctx.beginPath(); ctx.arc(n.x,n.y,2.5,0,Math.PI*2);
+          ctx.fillStyle = '#0a0a0a'; ctx.fill();
+        }
+      });
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
   </script>
 </body>
 </html>
