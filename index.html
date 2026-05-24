@@ -2555,7 +2555,7 @@
       featuredWrap.innerHTML = `
         <a class="art-featured" href="${featured.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${featured.title}">
           <div class="art-featured-img">
-            <img src="${featured.cover_image_url}" alt="${featured.title}" loading="lazy" />
+            <img src="${featured.cover_image_url}" alt="${featured.title}" loading="lazy" referrerpolicy="no-referrer" />
           </div>
           <div class="art-featured-body">
             <span class="art-cat ${artCatClass(featured.category)}">${featured.category}</span>
@@ -2576,7 +2576,7 @@
       grid.innerHTML = remaining.map((a, i) => `
         <a class="art-card reveal reveal-delay-${i + 1}" href="${a.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${a.title}">
           <div class="art-card-img">
-            <img src="${a.cover_image_url}" alt="${a.title}" loading="lazy" />
+            <img src="${a.cover_image_url}" alt="${a.title}" loading="lazy" referrerpolicy="no-referrer" />
           </div>
           <div class="art-card-body">
             <span class="art-cat ${artCatClass(a.category)}">${a.category}</span>
