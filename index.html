@@ -2114,18 +2114,28 @@
           <div class="w3f-wrapper">
             <p class="w3f-title">Send an Enquiry</p>
             <p class="w3f-sub">I&apos;ll respond within 24 hours. Fields marked <span style="color:#C8973C">*</span> are required.</p>
-            <form id="w3f" novalidate>
-              <!-- Form handled by /api/contact → Resend + Supabase -->
+            <form id="w3f" novalidate method="POST" accept-charset="UTF-8"
+                  action="https://crm.zoho.com/crm/WebToLeadForm" target="zoho-sink">
+              <!-- Submits to Zoho CRM Web-to-Lead (Leads module).
+                   Zoho's endpoint sends no CORS headers, so the POST is native
+                   into the hidden #zoho-sink iframe; that also stops the browser
+                   navigating away to returnURL. -->
+              <input type="hidden" name="xnQsjsdp" value="53a27a10f8725abcdeccc2d38e24d96463ec65f756178de047b61bd684a0d132">
+              <input type="hidden" name="xmIwtLD" value="040a622ca18f1985da579b65b9548ddd544dfbe0cc663d4246b42de7566e16b70c3da20106b5035581b236fdf25e5868">
+              <input type="hidden" name="actionType" value="TGVhZHM=">
+              <input type="hidden" name="returnURL" value="https://raneesh.net">
+              <input type="hidden" name="Lead Source" value="Web Research">
+              <input type="text" name="aG9uZXlwb3Q" value="" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
               <div class="w3f-row">
                 <div class="w3f-group">
                   <label class="w3f-label" for="w3f-name">Full Name <span>*</span></label>
-                  <input class="w3f-input" type="text" id="w3f-name" name="name" placeholder="Ahmed Al-Rashid" autocomplete="name" />
+                  <input class="w3f-input" type="text" id="w3f-name" name="Last Name" maxlength="80" placeholder="Ahmed Al-Rashid" autocomplete="name" />
                   <span class="w3f-field-error" id="err-name">Please enter your name.</span>
                 </div>
                 <div class="w3f-group">
                   <label class="w3f-label" for="w3f-email">Email <span>*</span></label>
-                  <input class="w3f-input" type="email" id="w3f-email" name="email" placeholder="you@company.com" autocomplete="email" />
+                  <input class="w3f-input" type="email" id="w3f-email" name="Email" maxlength="100" placeholder="you@company.com" autocomplete="email" />
                   <span class="w3f-field-error" id="err-email">Please enter a valid email.</span>
                 </div>
               </div>
@@ -2133,17 +2143,17 @@
               <div class="w3f-row">
                 <div class="w3f-group">
                   <label class="w3f-label" for="w3f-phone">Phone / WhatsApp</label>
-                  <input class="w3f-input" type="tel" id="w3f-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" />
+                  <input class="w3f-input" type="tel" id="w3f-phone" name="Mobile" maxlength="30" placeholder="+971 50 000 0000" autocomplete="tel" />
                 </div>
                 <div class="w3f-group">
                   <label class="w3f-label" for="w3f-company">Company</label>
-                  <input class="w3f-input" type="text" id="w3f-company" name="company" placeholder="Company / Organisation" autocomplete="organization" />
+                  <input class="w3f-input" type="text" id="w3f-company" name="Company" maxlength="200" placeholder="Company / Organisation" autocomplete="organization" />
                 </div>
               </div>
 
               <div class="w3f-group">
                 <label class="w3f-label" for="w3f-interest">Interest / Role</label>
-                <select class="w3f-select" id="w3f-interest" name="interest">
+                <select class="w3f-select" id="w3f-interest">
                   <option value="">Select your interest&hellip;</option>
                   <option>FM Advisory / Consulting</option>
                   <option>Community Management</option>
@@ -2160,7 +2170,7 @@
 
               <div class="w3f-group">
                 <label class="w3f-label" for="w3f-message">Message <span>*</span></label>
-                <textarea class="w3f-textarea" id="w3f-message" name="message" placeholder="Tell me about your project, challenge, or the role you&apos;re hiring for&hellip;"></textarea>
+                <textarea class="w3f-textarea" id="w3f-message" name="Description" placeholder="Tell me about your project, challenge, or the role you&apos;re hiring for&hellip;"></textarea>
                 <span class="w3f-field-error" id="err-message">Please enter a message.</span>
               </div>
 
@@ -2176,6 +2186,7 @@
                 Something went wrong. Email me directly at <a href="mailto:raneesh.mr08@gmail.com" style="color:#C8973C">raneesh.mr08@gmail.com</a>.
               </div>
             </form>
+            <iframe id="zoho-sink" name="zoho-sink" style="display:none;width:0;height:0;border:0" title="Zoho form target" aria-hidden="true"></iframe>
           </div>
         </div>
       </div>
@@ -2441,7 +2452,7 @@
 
 
     // ══════════════════════════════════════════════
-    //  CONTACT FORM — Resend + Supabase via /api/contact
+    //  CONTACT FORM — Zoho CRM Web-to-Lead (native POST -> hidden iframe)
     // ══════════════════════════════════════════════
     (function() {
       const form    = document.getElementById('w3f');
@@ -2480,46 +2491,53 @@
         return valid;
       }
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!validateForm()) return;
+      form.addEventListener('submit', (e) => {
+        if (!validateForm()) { e.preventDefault(); return; }
+
+        // Zoho requires Company; fall back to the person's name for individuals.
+        const nameEl = document.getElementById('w3f-name');
+        const coEl   = document.getElementById('w3f-company');
+        if (!coEl.value.trim()) coEl.value = nameEl.value.trim();
+
+        // Zoho's Web-to-Lead form has no Interest field — fold it into Description.
+        const intEl = document.getElementById('w3f-interest');
+        const msgEl = document.getElementById('w3f-message');
+        const interest = intEl ? intEl.value.trim() : '';
+        if (interest && msgEl.value.indexOf('Interest:') !== 0) {
+          msgEl.value = 'Interest: ' + interest + '\n\n' + msgEl.value;
+        }
 
         btn.disabled = true;
         btn.textContent = 'Sending…';
         success.style.display = 'none';
         error.style.display = 'none';
 
-        const data = {
-          name:     document.getElementById('w3f-name').value.trim(),
-          email:    document.getElementById('w3f-email').value.trim(),
-          phone:    document.getElementById('w3f-phone').value.trim(),
-          company:  document.getElementById('w3f-company').value.trim(),
-          interest: document.getElementById('w3f-interest').value.trim(),
-          message:  document.getElementById('w3f-message').value.trim()
-        };
-
-        try {
-          const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
-          if (res.ok) {
-            success.style.display = 'block';
-            form.reset();
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'form_submit', { event_category: 'Lead', event_label: data.interest || 'General' });
-            }
-          } else {
-            error.style.display = 'block';
-          }
-        } catch (err) {
-          error.style.display = 'block';
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', { event_category: 'Lead', event_label: interest || 'General' });
         }
 
+        form.dataset.submitted = '1';
+        setTimeout(function () { zohoDone(); }, 2500);
+        // no preventDefault — the native POST goes into #zoho-sink
+      });
+
+      function zohoDone() {
+        if (form.dataset.done === '1') return;
+        form.dataset.done = '1';
+        success.style.display = 'block';
+        form.reset();
         btn.disabled = false;
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Enquiry';
-      });
+        setTimeout(function () { form.dataset.done = ''; form.dataset.submitted = ''; }, 4000);
+      }
+
+      (function () {
+        const sink = document.getElementById('zoho-sink');
+        if (!sink) return;
+        sink.addEventListener('load', function () {
+          if (form.dataset.submitted === '1') zohoDone();
+        });
+      })();
     })();
 
 
