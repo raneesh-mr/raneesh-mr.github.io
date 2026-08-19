@@ -2222,10 +2222,6 @@
        JAVASCRIPT
   ═══════════════════════════════════════════ -->
   <script>
-    // ── Supabase config (anon key is safe to expose — RLS protects the data)
-    const SUPABASE_URL      = 'https://ecpcbumcqzsgrknmwwaq.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjcGNidW1jcXpzZ3Jrbm13d2FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NjMyNzksImV4cCI6MjA5MzMzOTI3OX0.rRJTZYkpcDKMYS5Oh5b17Uj1GW45P4Qwza0P_yLmWXI';
-
     // ── Enable JS-gated scroll-reveal animations
     document.documentElement.classList.add('js-reveal');
 
@@ -2611,20 +2607,32 @@
       document.querySelectorAll('#art-grid .reveal').forEach(el => revealObserver.observe(el));
     }
 
-    async function loadArticles() {
-      if (SUPABASE_URL.includes('YOUR_PROJECT_REF') || SUPABASE_ANON_KEY.includes('YOUR_ANON_KEY')) return;
-      try {
-        const url = `${SUPABASE_URL}/rest/v1/articles?status=eq.published&order=published_date.desc,sort_order.asc&limit=4&select=title,slug,excerpt_short,linkedin_url,cover_image_url,published_date,category,read_time_minutes`;
-        const res = await fetch(url, {
-          headers: {
-            'apikey':        SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-          }
-        });
-        if (!res.ok) return;
-        const articles = await res.json();
-        if (articles.length) renderArticles(articles);
-      } catch(e) {}
+    // ══════════════════════════════════════════════
+    //  ARTICLES — static list.
+    //  Previously fetched from a Supabase project that no longer
+    //  exists. Add an article by adding an object below; the
+    //  section hides itself automatically while the list is empty.
+    //  Newest first. published_date: YYYY-MM-DD.
+    // ══════════════════════════════════════════════
+    const ARTICLES = [
+      // {
+      //   title:             'Article title',
+      //   excerpt_short:     'One or two sentences.',
+      //   linkedin_url:      'https://www.linkedin.com/pulse/...',
+      //   cover_image_url:   'https://...',
+      //   published_date:    '2026-05-01',
+      //   category:          'AI & FM',        // AI & FM | CAFM | Community Mgmt | Future of Work
+      //   read_time_minutes: 8
+      // },
+    ];
+
+    function loadArticles() {
+      const section = document.getElementById('articles');
+      if (!ARTICLES.length) {
+        if (section) section.style.display = 'none';
+        return;
+      }
+      renderArticles(ARTICLES.slice(0, 4));
     }
 
     loadArticles();
