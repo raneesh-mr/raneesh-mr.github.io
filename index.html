@@ -1276,6 +1276,28 @@
     }
     .art-card-link:hover { color: var(--navy); }
 
+    /* Ground Floor covers — the articles are text-first, so the panel carries the mark */
+    .gf-cover {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 9px;
+      background: linear-gradient(140deg, var(--navy) 0%, #10263f 100%);
+    }
+    .gf-cover-mark {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700; letter-spacing: .3px;
+      color: var(--white);
+    }
+    .gf-cover-mark span { color: var(--gold); }
+    .gf-cover-rule { width: 34px; height: 2px; background: var(--gold); }
+    .gf-cover-sub {
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .art-card-img .gf-cover-mark { font-size: 17px; }
+    .art-card-img .gf-cover-sub  { font-size: 8px; letter-spacing: 1.5px; }
+
     /* Skeleton loader */
     .art-skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite; }
     @keyframes skeleton-pulse {
@@ -1696,6 +1718,7 @@
       <a href="#services" role="menuitem">Services</a>
       <a href="#skills" role="menuitem">Skills &amp; Expertise</a>
       <a href="#case-studies" role="menuitem">Case Studies</a>
+      <a href="#articles" role="menuitem">Articles</a>
       <a href="#contact" role="menuitem">Contact</a>
       <a href="#contact" class="nav-cta-mobile">Get In Touch ↗</a>
     </div>
@@ -2035,13 +2058,13 @@
   <!-- ═══════════════════════════════════════════
        ARTICLES
   ═══════════════════════════════════════════ -->
-  <section id="articles" class="section" aria-label="LinkedIn Articles">
+  <section id="articles" class="section" aria-label="Ground Floor Articles">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Insights &amp; Articles</span>
         <span class="gold-line"></span>
-        <h2 class="section-h2">Published on LinkedIn</h2>
-        <p class="section-sub">Thoughts on FM, community management, and the future of work — drawn from 20 years on the ground across the GCC.</p>
+        <h2 class="section-h2">Published on Ground Floor</h2>
+        <p class="section-sub">Long-form writing on facilities management, OA governance and service charges — published at <a href="https://groundfloor.raneesh.net" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">groundfloor.raneesh.net</a>, drawn from 20 years on the ground across the GCC.</p>
       </div>
 
       <!-- Featured article (latest) -->
@@ -2049,6 +2072,10 @@
 
       <!-- 3-card grid -->
       <div id="art-grid" class="art-grid reveal reveal-delay-1"></div>
+
+      <div class="reveal reveal-delay-2" style="text-align:center;margin-top:36px;">
+        <a href="https://groundfloor.raneesh.net" class="btn-primary" target="_blank" rel="noopener">Read all articles on Ground Floor &rarr;</a>
+      </div>
     </div>
   </section>
 
@@ -2208,6 +2235,8 @@
           <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#case-studies">Case Studies</a>
+          <a href="#articles">Articles</a>
+          <a href="https://groundfloor.raneesh.net" target="_blank" rel="noopener">Ground Floor ↗</a>
           <a href="#contact">Contact</a>
           <a href="https://www.linkedin.com/in/raneesh-mr/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
         </nav>
@@ -2544,10 +2573,16 @@
     // ══════════════════════════════════════════════
     function artCatClass(cat) {
       const map = {
-        'AI & FM':        'art-cat-ai',
-        'CAFM':           'art-cat-cafm',
-        'Community Mgmt': 'art-cat-cm',
-        'Future of Work': 'art-cat-future'
+        'AI & FM':                'art-cat-ai',
+        'CAFM':                   'art-cat-cafm',
+        'Community Mgmt':         'art-cat-cm',
+        'Future of Work':         'art-cat-future',
+        // Ground Floor pillars
+        'Community':              'art-cat-cm',
+        'OA Governance':          'art-cat-cafm',
+        'FM Leadership':          'art-cat-ai',
+        'PPM & Maintenance':      'art-cat-future',
+        'Contractor Intelligence':'art-cat-default'
       };
       return map[cat] || 'art-cat-default';
     }
@@ -2567,9 +2602,13 @@
       const remaining = articles.slice(1);
 
       featuredWrap.innerHTML = `
-        <a class="art-featured" href="${featured.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${featured.title}">
+        <a class="art-featured" href="${featured.url}" target="_blank" rel="noopener" aria-label="Read: ${featured.title}">
           <div class="art-featured-img">
-            <img src="${featured.cover_image_url}" alt="${featured.title}" loading="lazy" referrerpolicy="no-referrer" />
+            <div class="gf-cover">
+              <div class="gf-cover-mark">Ground<span>\u00b7</span>Floor</div>
+              <div class="gf-cover-rule"></div>
+              <div class="gf-cover-sub">${featured.category}</div>
+            </div>
           </div>
           <div class="art-featured-body">
             <span class="art-cat ${artCatClass(featured.category)}">${featured.category}</span>
@@ -2580,7 +2619,7 @@
               <span class="art-meta-dot">·</span>
               <span>${featured.read_time_minutes} min read</span>
             </div>
-            <span class="art-read-btn">Read on LinkedIn
+            <span class="art-read-btn">Read on Ground Floor
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
@@ -2588,9 +2627,13 @@
       `;
 
       grid.innerHTML = remaining.map((a, i) => `
-        <a class="art-card reveal reveal-delay-${i + 1}" href="${a.linkedin_url}" target="_blank" rel="noopener" aria-label="Read: ${a.title}">
+        <a class="art-card reveal reveal-delay-${i + 1}" href="${a.url}" target="_blank" rel="noopener" aria-label="Read: ${a.title}">
           <div class="art-card-img">
-            <img src="${a.cover_image_url}" alt="${a.title}" loading="lazy" referrerpolicy="no-referrer" />
+            <div class="gf-cover">
+              <div class="gf-cover-mark">Ground<span>\u00b7</span>Floor</div>
+              <div class="gf-cover-rule"></div>
+              <div class="gf-cover-sub">${a.category}</div>
+            </div>
           </div>
           <div class="art-card-body">
             <span class="art-cat ${artCatClass(a.category)}">${a.category}</span>
@@ -2615,15 +2658,38 @@
     //  Newest first. published_date: YYYY-MM-DD.
     // ══════════════════════════════════════════════
     const ARTICLES = [
-      // {
-      //   title:             'Article title',
-      //   excerpt_short:     'One or two sentences.',
-      //   linkedin_url:      'https://www.linkedin.com/pulse/...',
-      //   cover_image_url:   'https://...',
-      //   published_date:    '2026-05-01',
-      //   category:          'AI & FM',        // AI & FM | CAFM | Community Mgmt | Future of Work
-      //   read_time_minutes: 8
-      // },
+      {
+        title:             'Dubai Has Two Rent Rails. Every Fintech Is Building on One.',
+        excerpt_short:     'AED 32.2bn of rent moved through Dubai in a single quarter. The company leading the push to digitise it has financed 0.13% of one year\u2019s flow since launch \u2014 because the cheque was never a payment method.',
+        url:               'https://groundfloor.raneesh.net/dubai-two-rent-rails',
+        published_date:    '2026-08-28',
+        category:          'Community',
+        read_time_minutes: 11
+      },
+      {
+        title:             'Anatomy of a Service Charge: What Boards Should Interrogate Before Approving a Budget',
+        excerpt_short:     'The budget pack lands on a Thursday: forty pages, one line saying costs have gone up, approval wanted by next week. What the number contains, and the six questions to put in writing first.',
+        url:               'https://groundfloor.raneesh.net/service-charge-anatomy',
+        published_date:    '2026-08-01',
+        category:          'OA Governance',
+        read_time_minutes: 10
+      },
+      {
+        title:             '20 Years in GCC Facilities Management: What the Industry Still Gets Wrong',
+        excerpt_short:     'Airports, data centres, defence infrastructure, luxury residential, master communities. The problems that should have been solved by now \u2014 and why they persist in every sector and every emirate.',
+        url:               'https://groundfloor.raneesh.net/20-years-gcc-fm',
+        published_date:    '2026-05-01',
+        category:          'FM Leadership',
+        read_time_minutes: 11
+      },
+      {
+        title:             'Before You Hand Over the Keys: What 90% of Developers Miss in Pre-Handover FM Planning',
+        excerpt_short:     'The snag list gets the attention. Service contracts, CAFM setup, as-builts and community rules get treated as an afterthought \u2014 and by move-in day it is already too late to fix cheaply.',
+        url:               'https://groundfloor.raneesh.net/pre-handover-fm',
+        published_date:    '2026-05-01',
+        category:          'FM Leadership',
+        read_time_minutes: 10
+      },
     ];
 
     function loadArticles() {
