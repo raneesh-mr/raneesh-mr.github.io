@@ -1689,7 +1689,23 @@
     }
     @media (max-width: 560px) { .w3f-row { grid-template-columns: 1fr; } }
     @media (max-width: 480px) { .w3f-wrapper { padding: 24px 18px; } }
-  </style>
+  
+    /* -- Mobile hardening, 28 Aug 2026 ---------------------------------
+       The page scrolled sideways on phones. #nav is position:fixed with
+       left:0/right:0, so it sized itself to the document's scroll width
+       rather than the viewport; the hamburger sits at the far right of a
+       space-between row, so it ended up beyond the screen edge. That is
+       why the menu icon appeared to be missing. .footer-links had no
+       flex-wrap, so the two links added on 28 Aug widened it further. */
+    html { overflow-x: clip; }
+    body { overflow-x: clip; }
+    .footer-links { flex-wrap: wrap; }
+    .proof-companies { min-width: 0; max-width: 100%; }
+    .art-featured, .art-card, .art-featured-body, .art-card-body { min-width: 0; }
+    @media (max-width: 768px) {
+      .footer-links { row-gap: 12px; justify-content: center; }
+    }
+</style>
 </head>
 <body>
 
@@ -1910,8 +1926,9 @@
             <h2 class="section-h2">Two Decades of<br>Excellence</h2>
           </div>
           <p class="about-lead reveal">Bridging technical FM expertise with digital innovation — turning data into information, information into knowledge, and knowledge into wisdom.</p>
-          <p class="about-body reveal">With 20+ years of facilities management and community management experience spanning residential master communities, international airports, data centres, defence installations, and corporate real estate across the UAE &amp; India, I bring a rare combination of technical depth and strategic vision to every engagement.</p>
+          <p class="about-body reveal">With 20+ years of facilities management and community management experience spanning Marriott-branded luxury residences, residential master communities, international airports, data centres, defence installations, and corporate real estate across the UAE &amp; India, I bring a rare combination of technical depth and strategic vision to every engagement. Today that means running branded residential assets on Palm Jumeirah for UHNWI owners and investors — where service standards, brand compliance and OA governance have to hold at the same time.</p>
           <div class="about-highlights reveal">
+            <div class="about-highlight"><span class="about-highlight-dot"></span>Community Manager for Marriott-branded luxury residences on Palm Jumeirah — UHNWI owners, brand-standard compliance &amp; OA governance</div>
             <div class="about-highlight"><span class="about-highlight-dot"></span>IOSH, ISO 9001 Quality Management Systems (QMS) Internal Auditor, M-100 (Essentials of Community Association Management) &amp; IMS certified</div>
             <div class="about-highlight"><span class="about-highlight-dot"></span>Skilled in PowerApps, Power Automate &amp; Power BI — building digital workflows that turn FM data into decisions</div>
             <div class="about-highlight"><span class="about-highlight-dot"></span>Deep expertise in CAFM system implementations, community management &amp; digital transformation</div>
@@ -1933,15 +1950,24 @@
           </div>
           <div class="timeline">
             <div class="timeline-item reveal reveal-delay-1">
+              <div class="timeline-dot">2026</div>
+              <div class="timeline-body">
+                <div class="timeline-period">2026 — Present</div>
+                <div class="timeline-company">Strata Global · SG Community Management Services</div>
+                <div class="timeline-role">W Residences The Palm · Affini Residences · Marriott Branded Residences</div>
+                <span class="timeline-tag">Branded Residences</span>
+              </div>
+            </div>
+            <div class="timeline-item reveal reveal-delay-2">
               <div class="timeline-dot">2024</div>
               <div class="timeline-body">
-                <div class="timeline-period">2024 — Present</div>
+                <div class="timeline-period">2024 — 2026</div>
                 <div class="timeline-company">Wasl Communities Management</div>
                 <div class="timeline-role">Al Kifaf Community Management · Palm Jumeirah · JGE</div>
                 <span class="timeline-tag">Community FM</span>
               </div>
             </div>
-            <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-item reveal reveal-delay-3">
               <div class="timeline-dot">2016</div>
               <div class="timeline-body">
                 <div class="timeline-period">2016</div>
@@ -1950,7 +1976,7 @@
                 <span class="timeline-tag">Luxury Residential</span>
               </div>
             </div>
-            <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-item reveal reveal-delay-1">
               <div class="timeline-dot">2014</div>
               <div class="timeline-body">
                 <div class="timeline-period">2014</div>
@@ -1959,7 +1985,7 @@
                 <span class="timeline-tag">Airport FM</span>
               </div>
             </div>
-            <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-item reveal reveal-delay-2">
               <div class="timeline-dot">2011</div>
               <div class="timeline-body">
                 <div class="timeline-period">2011</div>
@@ -1968,7 +1994,7 @@
                 <span class="timeline-tag">Commercial FM</span>
               </div>
             </div>
-            <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-item reveal reveal-delay-3">
               <div class="timeline-dot">2008</div>
               <div class="timeline-body">
                 <div class="timeline-period">2008</div>
@@ -1977,7 +2003,7 @@
                 <span class="timeline-tag">Data Centre</span>
               </div>
             </div>
-            <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-item reveal reveal-delay-1">
               <div class="timeline-dot">2005</div>
               <div class="timeline-body">
                 <div class="timeline-period">2005 — 2007</div>
