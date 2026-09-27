@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://raneesh.net/sitemap.xml
+Sitemap: https://groundfloor.raneesh.net/sitemap.xml
