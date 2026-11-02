@@ -746,6 +746,135 @@
     .service-card.full { grid-column: 1 / -1; }
     .service-card.full .service-desc { max-width: 800px; }
 
+    /* ── Featured advisory services ───────────────────────── */
+    .svc-featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 56px;
+    }
+    .svc-featured {
+      background: var(--white);
+      padding: 44px 40px;
+      position: relative;
+      transition: var(--transition);
+      scroll-margin-top: 96px;
+    }
+    .svc-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+    .svc-featured:hover { background: var(--cream); }
+    .svc-featured-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .svc-featured-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .svc-featured-promise {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-style: italic;
+      color: var(--text-mid);
+      line-height: 1.5;
+      margin-bottom: 26px;
+    }
+    .svc-includes {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .svc-includes li {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+    .svc-includes li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0; top: 1px;
+      color: var(--gold);
+      font-size: 12px;
+    }
+    .svc-proof {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+    .svc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+    .svc-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-mid);
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 4px 11px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .svc-article-link {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .svc-article-link:hover { color: var(--navy); }
+    .svc-featured .btn-primary { padding: 14px 26px; font-size: 13px; }
+    .svc-also {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .svc-also::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+    .services-grid.compact .service-card { padding: 26px 24px; }
+    .services-grid.compact .service-title { font-size: 16px; }
+    .services-grid.compact .service-desc { font-size: 13.5px; margin-bottom: 16px; }
+    .services-grid.compact .service-icon { width: 40px; height: 40px; font-size: 19px; margin-bottom: 16px; }
+
+    @media (max-width: 860px) {
+      .svc-featured-grid { grid-template-columns: 1fr; margin-bottom: 40px; }
+      .svc-featured { padding: 32px 22px; }
+      .svc-featured-title { font-size: 21px; }
+      .svc-featured-promise { font-size: 16px; }
+      .svc-chip { white-space: normal; }
+    }
+
     /* ═══════════════════════════════════════════
        ABOUT / TIMELINE
     ═══════════════════════════════════════════ */
@@ -1856,7 +1985,59 @@
         <h2 class="section-h2">FM &amp; Digital Solutions<br>Across GCC &amp; India</h2>
         <p class="section-sub">From technical audits to full CAFM implementations — comprehensive solutions built on 20 years of hands-on experience across the GCC &amp; India.</p>
       </div>
-      <div class="services-grid">
+      <div class="svc-featured-grid">
+
+        <article class="svc-featured reveal" id="svc-handover">
+          <div class="svc-featured-label">Advisory 01</div>
+          <h3 class="svc-featured-title">Developer Handover &amp; DLP Management</h3>
+          <p class="svc-featured-promise">Hand over on time, close defects at the contractor&rsquo;s cost, and start operations ready.</p>
+          <ul class="svc-includes">
+            <li>Pre-handover FM readiness review: service contracts, CAFM and asset register, as-builts, O&amp;M manuals, community rules</li>
+            <li>Snagging and de-snagging programme design, with digital snag tracking and contractor follow-up protocols</li>
+            <li>Unit and common-area inspection checklists, plus a handover documentation pack</li>
+            <li>DLP management: defect log, contractor rectification tracking, warranty register, DLP close-out</li>
+            <li>Post-handover mobilisation: FM, security, landscaping and MEP contracts in place for move-in</li>
+            <li>RERA / JOP compliance alignment for the OA handover</li>
+          </ul>
+          <p class="svc-proof">14% faster handover lead times &middot; 1,499 units transitioned &middot; DLP administered at Dubai Airports at zero cost to the owner</p>
+          <div class="svc-chips">
+            <span class="svc-chip">Handover Readiness Audit</span>
+            <span class="svc-chip">DLP Management (12-month)</span>
+            <span class="svc-chip">Snagging Programme Setup</span>
+          </div>
+          <a class="svc-article-link" href="https://groundfloor.raneesh.net/pre-handover-fm" target="_blank" rel="noopener">Read: What 90% of Developers Miss in Pre-Handover FM Planning &rarr;</a>
+          <div>
+            <a href="#contact" class="btn-primary" data-preselect="Handover &amp; DLP Advisory">Discuss your handover &rarr;</a>
+          </div>
+        </article>
+
+        <article class="svc-featured reveal reveal-delay-1" id="svc-procurement">
+          <div class="svc-featured-label">Advisory 02</div>
+          <h3 class="svc-featured-title">FM Procurement &amp; Vendor Governance</h3>
+          <p class="svc-featured-promise">Buy FM services on clear scope, fair price and enforceable KPIs.</p>
+          <ul class="svc-includes">
+            <li>Scope of Work (SOW) and specification writing for hard and soft FM services</li>
+            <li>Tender documentation, bidder pre-qualification, and technical and commercial evaluation</li>
+            <li>SLA / KPI frameworks and performance scorecards</li>
+            <li>Contract negotiation support and award recommendation</li>
+            <li>Vendor performance reviews, contract benchmarking and re-tendering strategy</li>
+            <li>AMC / CMA portfolio review for owners&rsquo; associations and asset owners</li>
+          </ul>
+          <p class="svc-proof">66+ vendor contracts governed &middot; 7% contract cost reduction &middot; AED 34.5M budget managed</p>
+          <div class="svc-chips">
+            <span class="svc-chip">Tender Evaluation</span>
+            <span class="svc-chip">Contract Benchmarking</span>
+            <span class="svc-chip">SLA/KPI Framework</span>
+          </div>
+          <div>
+            <a href="#contact" class="btn-primary" data-preselect="FM Procurement Advisory">Discuss your procurement &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="svc-also reveal">Also available</div>
+      <div class="services-grid compact">
         <div class="service-card full reveal">
           <div class="service-icon" aria-hidden="true">🧭</div>
           <h3 class="service-title">Expert Consultation &amp; Market Insight</h3>
@@ -1909,12 +2090,6 @@
           <div class="service-icon" aria-hidden="true">🎓</div>
           <h3 class="service-title">FM Staff Training</h3>
           <p class="service-desc">Structured training programmes for facilities management teams — covering operational standards, PPM execution, CAFM usage, HSE compliance, and service excellence to upskill staff and raise performance benchmarks.</p>
-          <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="service-card full reveal">
-          <div class="service-icon" aria-hidden="true">📝</div>
-          <h3 class="service-title">Contract Structuring &amp; Performance Frameworks</h3>
-          <p class="service-desc">Development of detailed Scope of Work (SOW), SLA frameworks, and KPI-based performance scorecards. Full support for tender documentation, technical evaluations, vendor selection, and contract negotiations — ensuring measurable service delivery, accountability, and cost control across your FM and OA contracts.</p>
           <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
         </div>
       </div>
