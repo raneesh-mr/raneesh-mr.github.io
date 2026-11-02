@@ -1761,16 +1761,21 @@
         <div class="hero-text">
           <div class="hero-eyebrow" data-reveal>
             <div class="hero-eyebrow-line"></div>
-            <span class="hero-eyebrow-text">FM &amp; Digital Solutions Professional · Dubai, UAE</span>
+            <span class="hero-eyebrow-text">Independent FM Advisory · Dubai, UAE</span>
           </div>
           <h1 class="hero-name" data-reveal>
             Raneesh
             <span class="hero-name-accent">Raveendran.</span>
           </h1>
-          <p class="hero-title" data-reveal>Senior Facilities &amp; Community Manager · Digital Solutions</p>
+          <p class="hero-title" data-reveal>Developer Handover, DLP &amp; FM Procurement Advisory</p>
           <p class="hero-desc" data-reveal>
-            Two decades of FM excellence across master communities, airports, data centres and commercial properties in GCC &amp; India — delivering operational efficiency through CAFM, digital transformation and smart community governance.
+            I help developers, owners&rsquo; associations and asset owners hand over buildings without leaving defects, costs and contracts behind — and procure FM services that actually perform. 20+ years across master communities, airports, data centres and branded residences in the UAE.
           </p>
+          <div class="hero-actions" data-reveal style="margin-top:32px;">
+            <a href="#svc-handover" class="btn-primary">Handover &amp; DLP Advisory</a>
+            <a href="#svc-procurement" class="btn-outline">FM Procurement Advisory</a>
+            <a href="#contact" class="btn-outline">Get in touch</a>
+          </div>
         </div>
 
         <div class="hero-avatar-wrap" aria-hidden="true">
@@ -1790,19 +1795,19 @@
     <!-- Stats strip — z-index: 10, always visible at bottom of viewport -->
     <div class="hero-stats" aria-label="Key statistics">
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="20">0</div>
+        <div class="hero-stat-num" data-count="20">20+</div>
         <div class="hero-stat-label">Years Experience</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="6">0</div>
+        <div class="hero-stat-num" data-count="6">6+</div>
         <div class="hero-stat-label">Industry Sectors</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="10">0</div>
+        <div class="hero-stat-num" data-count="10">10+</div>
         <div class="hero-stat-label">Services Offered</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="4">0</div>
+        <div class="hero-stat-num" data-count="4">4+</div>
         <div class="hero-stat-label">Certifications</div>
       </div>
       <div class="hero-stat">
@@ -2415,6 +2420,7 @@
         const target = +el.dataset.count;
         const suffix = el.dataset.suffix || '+';
         let current = 0;
+        el.textContent = '0' + suffix;   // reset only now, after load, so the real value is in the HTML
         const step = target / 60;
         const timer = setInterval(() => {
           current = Math.min(current + step, target);
