@@ -2531,9 +2531,11 @@
               </div>
 
               <div class="w3f-group">
-                <label class="w3f-label" for="w3f-interest">Interest / Role</label>
+                <label class="w3f-label" for="w3f-interest">What do you need help with?</label>
                 <select class="w3f-select" id="w3f-interest">
                   <option value="">Select your interest&hellip;</option>
+                  <option value="Handover &amp; DLP Advisory">Handover &amp; DLP Advisory</option>
+                  <option value="FM Procurement Advisory">FM Procurement Advisory</option>
                   <option value="Expert Consultation">Expert Consultation / Market Insight</option>
                   <option>Community Management</option>
                   <option>CAFM Implementation</option>
@@ -2671,6 +2673,31 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
+
+    // ── Pre-select the enquiry type when arriving from a service card ──
+    // Does not touch how the form submits; the select is still folded into
+    // Description by the existing submit handler.
+    (function () {
+      const sel = document.getElementById('w3f-interest');
+      if (!sel) return;
+      const pick = (val) => {
+        if (!val) return;
+        const opt = Array.from(sel.options).find(
+          o => o.value === val || o.textContent.trim() === val
+        );
+        if (!opt) return;
+        sel.value = opt.value || opt.textContent.trim();
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+      document.querySelectorAll('[data-preselect]').forEach(el => {
+        el.addEventListener('click', () => pick(el.dataset.preselect));
+      });
+      const q = new URLSearchParams(location.search).get('svc');
+      if (q) {
+        pick({ handover: 'Handover & DLP Advisory',
+               procurement: 'FM Procurement Advisory' }[q] || q);
+      }
+    })();
 
     // ── Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
