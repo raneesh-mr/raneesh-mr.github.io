@@ -862,6 +862,36 @@
       gap: 14px;
     }
     .svc-also::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+
+    /* ── How an engagement works ───────────────────────────── */
+    .engage-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .engage-step { background: var(--navy); padding: 34px 26px; }
+    .engage-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .engage-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .engage-desc { font-size: 13.5px; color: rgba(255,255,255,.6); line-height: 1.65; }
+    @media (max-width: 860px) { .engage-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .engage-grid { grid-template-columns: 1fr; } }
     .services-grid.compact .service-card { padding: 26px 24px; }
     .services-grid.compact .service-title { font-size: 16px; }
     .services-grid.compact .service-desc { font-size: 13.5px; margin-bottom: 16px; }
@@ -2091,6 +2121,41 @@
           <h3 class="service-title">FM Staff Training</h3>
           <p class="service-desc">Structured training programmes for facilities management teams — covering operational standards, PPM execution, CAFM usage, HSE compliance, and service excellence to upskill staff and raise performance benchmarks.</p>
           <a href="#contact" class="service-link">Enquire <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW AN ENGAGEMENT WORKS
+  ═══════════════════════════════════════════ -->
+  <section class="section section-dark" aria-label="How an engagement works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Working Together</span>
+        <span class="gold-line"></span>
+        <h2 class="section-h2" style="color:var(--white)">How an Engagement Works</h2>
+      </div>
+      <div class="engage-grid">
+        <div class="engage-step reveal">
+          <div class="engage-num">STEP 01</div>
+          <div class="engage-title">Discovery call</div>
+          <p class="engage-desc">30 minutes, free. We establish what you are actually dealing with and whether I am the right person for it.</p>
+        </div>
+        <div class="engage-step reveal reveal-delay-1">
+          <div class="engage-num">STEP 02</div>
+          <div class="engage-title">Scoped proposal</div>
+          <p class="engage-desc">Fixed fee, clear deliverables. You know the price and the output before anything starts.</p>
+        </div>
+        <div class="engage-step reveal reveal-delay-2">
+          <div class="engage-num">STEP 03</div>
+          <div class="engage-title">Delivery</div>
+          <p class="engage-desc">On-site and remote, with weekly reporting so there are no surprises at the end.</p>
+        </div>
+        <div class="engage-step reveal reveal-delay-3">
+          <div class="engage-num">STEP 04</div>
+          <div class="engage-title">Handover of tools</div>
+          <p class="engage-desc">Checklists, trackers and templates stay with you. You keep the system, not just the report.</p>
         </div>
       </div>
     </div>
